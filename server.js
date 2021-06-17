@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 // Add path to story using constant
 const items = require('./routes/api/items.js');
+const changepass = require('./routes/api/changepass.js');
 
 const app = express();
 
@@ -21,7 +22,8 @@ mongoose
 
 // User Routes
 // Listen for your user story and link to constant created above
-app.use('/api/items', items)
+app.use('/api/items', items);
+app.use('/api/changepass', changepass);
 
 const port = process.env.PORT || 5000;
 
