@@ -10,7 +10,19 @@ const CoursesSchema = new Schema({
     courseName:{
         type: String,
         required: true
+    },
+    courseGrade:{
+        type: Number,
+        required: true
     }
 });
 
-module.exports = Courses = mongoose.model('courses', CoursesSchema);
+const coursesModel=mongoose.model('courses',CoursesSchema);
+
+module.exports = coursesModel;
+
+//module.exports = Courses = mongoose.model('courses', CoursesSchema);
+
+
+
+
