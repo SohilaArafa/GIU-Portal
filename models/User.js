@@ -29,4 +29,4 @@ const UsersSchema = new Schema({
     },
 });
 
-module.exports = User = mongoose.model('user', UsersSchema);
+module.exports = Courses = mongoose.model('user', UsersSchema);
