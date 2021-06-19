@@ -16,7 +16,7 @@ const StudentTakeCoursesSchema = new Schema({
         required: true
     },
     SemesterNumber : {
-        type: String
+        type: String,
         required: true 
     }, 
 });
