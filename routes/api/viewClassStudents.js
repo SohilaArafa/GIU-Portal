@@ -9,21 +9,42 @@ const StudentTakeCourses = require('../../models/StudentTakeCourses');
 // @route   POST api/changepass
 // @desc    Create an Item
 // @access  Public
-router.get('/', (req,res) => {
-  User.find({})
+router.get('/courses/:TaID', (req, res) => {
+
+  const TaID = req.params.TaID
+  Course
+    .find({ TaID })
+    .then(courses => {
+      res.json(courses)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(400).send('Invalid request');
+    })
 
 });
 
-router.get('/', (req, res) => {
-  Course.find({TaID: req.body.TaID})
-    .then(Course => res.json(Course))
+router.get('/students/:course', (req, res) => {
+
+  const CourseID = req.params.course
+
+  StudentTakeCourses.find({ CourseID })
+    .then(Enrollments => res.json(Enrollments))
+    .catch(err => res.status(400).send('Invlaid request'))
+
  
 });
 
-router.get('/', (req,res) => {
-  StudentTakeCourses.find({CourseID: req.Course.TaID})
-      .then(StudentTakeCourses => res.json(StudentTakeCourses)) 
-    
+router.get('/grades/:SemesterNumber/:SID', (req, res) => {
+
+  const SID = req.params.SID
+  const SemesterNumber = req.params.SemesterNumber
+
+  StudentTakeCourses.find({ SID, SemesterNumber })
+    .then(Enrollments => res.json(Enrollments))
+    .catch(err => res.status(400).send('Invlaid request'))
+ 
 });
+
 
 module.exports = router; 

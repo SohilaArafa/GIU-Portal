@@ -31,6 +31,9 @@ const UsersSchema = new Schema({
         type: String,
         required: true
     },
+    courses: {
+        type: { type: ObjectId, ref: 'course' }    
+    }
 });
 
 module.exports = User = mongoose.model('user', UsersSchema);

@@ -15,6 +15,9 @@ const CoursesSchema = new Schema({
         type: String, 
         required: true
     },
+    studensEnrolled: {
+        type: { type: ObjectId, ref: 'StudentTakeCourses' }, 
+    }
 });
 
 module.exports = Courses = mongoose.model('course', CoursesSchema);
