@@ -46,5 +46,65 @@ router.get('/grades/:SemesterNumber/:SID', (req, res) => {
  
 });
 
+router.post('/course', (req, res) => {
+
+  const courseData = req.body
+
+  const course = new Course(courseData);
+  course.save(function (err) {
+
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ success: false, error: err })
+    }
+
+    res.json({ success: 'Course Saved', error: null })
+
+
+  });
+
+
+})
+
+router.post('/student', (req, res) => {
+
+  const studentData = req.body
+
+  const student = new User(studentData);
+  student.save(function (err) {
+
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ success: false, error: err })
+    }
+
+    res.json({ success: 'Student Saved', error: null })
+
+
+  });
+
+
+})
+
+router.post('/', (req, res) => {
+
+  const studentTakeCoursesData = req.body
+
+  const studentTakeCourses = new StudentTakeCourses(studentTakeCoursesData);
+  studentTakeCourses.save(function (err) {
+
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ success: false, error: err })
+    }
+
+    res.json({ success: 'Enrollment Saved', error: null })
+
+
+  });
+
+
+})
+
 
 module.exports = router; 

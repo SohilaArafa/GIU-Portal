@@ -16,7 +16,7 @@ const CoursesSchema = new Schema({
         required: true
     },
     studensEnrolled: {
-        type: { type: ObjectId, ref: 'StudentTakeCourses' }, 
+        type: { type: mongoose.Types.ObjectId, ref: 'StudentTakeCourses' }, 
     }
 });
 

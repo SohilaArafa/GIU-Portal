@@ -12,7 +12,7 @@ const StudentTakeCoursesSchema = new Schema({
         required: true
     },
     CourseGrade : {
-        type: Float32Array, 
+        type: mongoose.Types.Decimal128, 
         required: true
     },
     SemesterNumber : {

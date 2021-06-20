@@ -24,7 +24,6 @@ function App() {
       <div className="App">
         <AppNavbar />
         <ChangePass />
-
       </div>
 
       <Switch>
