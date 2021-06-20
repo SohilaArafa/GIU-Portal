@@ -24,6 +24,7 @@ function App() {
       <Switch>
         <Route path="/ta"><TA /></Route>
         <Route path="/course-students"><CourseStudents /></Route>
+        <Route path="/students"><Student /></Route>
       </Switch>
     </Router>
 );
