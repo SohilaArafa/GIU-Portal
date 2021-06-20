@@ -1,8 +1,12 @@
 
+
+import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppNavbar from './components/AppNavbar';
 import TA from './components/TA';
 import './App.css';
+import View_Grades from './components/View_Grades';
+
 
 import {
   BrowserRouter as Router,
@@ -19,6 +23,8 @@ function App() {
     <Router>
       <div className="App">
         <AppNavbar />
+        <ChangePass />
+
       </div>
 
       <Switch>
@@ -27,6 +33,8 @@ function App() {
       </Switch>
     </Router>
 );
+
+
 }
 
 export default App;
