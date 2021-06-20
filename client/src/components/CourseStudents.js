@@ -6,8 +6,12 @@ import {
     Col
 } from 'reactstrap';
 
+import { withRouter } from "react-router";
+
+
 class CourseStudents extends Component {
     state = {
+        CourseID: undefined,
         students: [
             {
                 SID: '213',
@@ -39,13 +43,27 @@ class CourseStudents extends Component {
             }
         ]
     }
+
+    async componentDidMount () {
+        
+        const CourseID = this.props.match.params.course;
+        await this.getStudentsFromDB(CourseID)
+        // this.setState({ CourseID })
+
+    }
+
+    async getStudentsFromDB (CourseID) {
+        console.log(CourseID)
+    }
+
     
     render () {
+
 
         return (
             <Container>
                 <Row>
-                    <Col xs="12"><h1>Software Engineering 101 - SE101</h1></Col>
+                    <Col xs="12"><h1>Software Engineering 101 - SE101 { this.state.CourseID } </h1></Col>
                     <Col xs="12" style={{ paddingTop: '2em' }}>
                         <Table>
                             <thead>
@@ -58,8 +76,8 @@ class CourseStudents extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.students.map(student => (
-                                        <tr>
+                                    this.state.students.map((student, i) => (
+                                        <tr key={i}>
                                             <th scope="row">{ student.SID }</th>
                                             <td>{ student.Name }</td>
                                             <td>{ student.SemesterNumber }</td>
@@ -79,4 +97,4 @@ class CourseStudents extends Component {
 
 
 
-export default CourseStudents;
+export default withRouter(CourseStudents);

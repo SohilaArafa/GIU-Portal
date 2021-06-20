@@ -35,13 +35,14 @@ class TA extends Component {
         return (
             <Container>
                 <Row>
-                    { this.state.courses.map(course => (
-                            <Col xs="12" md="6" lg="4">
+                    { this.state.courses.map((course, i) => (
+                            <Col xs="12" md="6" lg="4" key={i}>
                                 <Card>
                                     <CardBody>
                                         <CardTitle tag="h5">{ course.Name }</CardTitle>
-                                        <CardSubtitle tag="h6" className="mb-2 text-muted">{ course.CourseID }</CardSubtitle>
-                                        <Link to="/course-students" component={Button}>
+                                        <CardSubtitle tag="h6" className="mb-2 text-muted">
+                                            { course.CourseID }</CardSubtitle>
+                                        <Link to={"/course-students/"+course.CourseID} component={Button}>
                                             View Students
                                         </Link>
 
