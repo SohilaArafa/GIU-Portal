@@ -14,28 +14,28 @@ class CourseStudents extends Component {
                 Name: 'Ahmed Mahmoud',
                 CourseID: '321',
                 CourseGrade: 77.55,
-                SemesterNumber: 'Semester 1'
+                SemesterNumber: '1'
             },
             {
                 SID: '214',
                 Name: 'Ibrahim Hebo',
                 CourseID: '321',
                 CourseGrade: 80.51,
-                SemesterNumber: 'Semester 1'
+                SemesterNumber: '1'
             },
             {
                 SID: '215',
                 Name: 'Farah Sheko',
                 CourseID: '321',
                 CourseGrade: 77.55,
-                SemesterNumber: 'Semester 1'
+                SemesterNumber: '1'
             },
             {
                 SID: '2166',
                 Name: 'Hend Sabre',
                 CourseID: '321',
                 CourseGrade: 77.55,
-                SemesterNumber: 'Semester 1'
+                SemesterNumber: '1'
             }
         ]
     }
