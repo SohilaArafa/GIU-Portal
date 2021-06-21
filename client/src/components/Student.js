@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 
 class Student extends Component {
-    render () {
+   
         state = {
             semester: [
                 {
@@ -18,7 +18,7 @@ class Student extends Component {
                 },
             ]
         }
-
+        render () {
         return (
         <Container>
             { this.state.semester.map(semester => (
