@@ -17,7 +17,42 @@ class Student extends Component {
                     SemesterNumber: '2'
                 },
             ]
+        } 
+
+      /*  state = { 
+            SID : '1002329' ,
+            SemesterNumber : []
+        
+        }*/
+
+        componentDidMount () {
+
+            const SID = this.state.SID //localStorage.getItem('SID')
+      //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
+    
+            fetch("http://localhost:5000/api/viewClassStudents/courses/" + SID)
+            .then(res => res.json())
+            .then(
+              (courses) => {
+    
+                if (courses.error) {
+                    alert('Error from database')
+                    console.log(courses.error)
+                    return 
+                }
+    
+                this.setState({ courses });
+    
+              },
+              (error) => {
+                
+                alert('Error fetching data')
+                console.log(error)
+                
+              })
+    
         }
+
  render () {
         return (
         <Container>
