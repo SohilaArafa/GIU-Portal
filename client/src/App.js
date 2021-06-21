@@ -7,7 +7,7 @@ import TA from './components/TA';
 import './App.css';
 //import ChangePass from './components/ChangePass';
 import Student from './components/Student';
-import CourseStudents from './components/CourseStudents';
+
 
 import {
   BrowserRouter as Router,
@@ -17,7 +17,7 @@ import {
   // useRouteMatch,
   // useParams
 } from "react-router-dom";
-
+import CourseStudents from './components/CourseStudents';
 
 function App() {
   return (
