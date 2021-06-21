@@ -16,6 +16,9 @@ class Student extends Component {
                 {
                     SemesterNumber: '2'
                 },
+                {
+                    SemesterNumber: '3'
+                },
             ]
         } 
 
@@ -58,9 +61,7 @@ class Student extends Component {
         <Container>
             { this.state.semester.map(semester => (
             <ListGroup>
-                <ListGroupItem active tag="button" action>{semester.SemesterNumber}</ListGroupItem>
-                <ListGroupItem tag="button" action>{semester.SemesterNumber}</ListGroupItem>
-                
+                <ListGroupItem  tag="button" action>{semester.SemesterNumber}</ListGroupItem>      
           </ListGroup>
                       ))
                     }
