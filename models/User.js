@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const UsersSchema = new Schema({
     if:{
         type: Number,
-        rewuired: true,
+        required: true,
     },
     fname:{
         type: String,
