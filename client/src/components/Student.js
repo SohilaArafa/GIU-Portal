@@ -11,13 +11,13 @@ class Student extends Component {
         state = {
             semester: [
                 {
-                    SemesterNumber: '1'
+                    SemesterNumber: 'Winter19'
                 },
                 {
-                    SemesterNumber: '2'
+                    SemesterNumber: 'Spring20'
                 },
                 {
-                    SemesterNumber: '3'
+                    SemesterNumber: 'Winter20'
                 },
             ]
         } 
