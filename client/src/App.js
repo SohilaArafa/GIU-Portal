@@ -30,7 +30,6 @@ function App() {
         <Route path="/ta"><TA /></Route>
         <Route path="/course-students"><CourseStudents /></Route>
         <Route path="/students"><Student /></Route>
-        <Route path="/change-password"><ChangePass /></Route>
       </Switch>
     </Router>
 );

@@ -18,14 +18,14 @@ class Student extends Component {
                 },
             ]
         }
-        render () {
+ render () {
         return (
         <Container>
             { this.state.semester.map(semester => (
             <ListGroup>
-            <ListGroupItem active tag="button" action>{SemesterNumber}</ListGroupItem>
-            <ListGroupItem tag="button" action>{SemesterNumber}</ListGroupItem>
-
+                <ListGroupItem active tag="button" action>{semester.SemesterNumber}</ListGroupItem>
+                <ListGroupItem tag="button" action>{semester.SemesterNumber}</ListGroupItem>
+                
           </ListGroup>
                       ))
                     }
