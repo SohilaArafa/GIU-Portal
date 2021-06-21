@@ -5,8 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import AppNavbar from './components/AppNavbar';
 import TA from './components/TA';
 import './App.css';
-// import View_Grades from './components/View_Grades';s
-import ChangePass from './components/ChangePass';
+//import ChangePass from './components/ChangePass';
+import Student from './components/Student';
+import CourseStudents from './components/CourseStudents';
 
 import {
   BrowserRouter as Router,
@@ -16,8 +17,7 @@ import {
   // useRouteMatch,
   // useParams
 } from "react-router-dom";
-import Student from './components/Student';
-import CourseStudents from './components/CourseStudents';
+
 
 function App() {
   return (
