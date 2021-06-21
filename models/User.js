@@ -26,7 +26,11 @@ const UsersSchema = new Schema({
     profile:{
         type: String,
         required: true
+<<<<<<< HEAD
     },
+=======
+    }
+>>>>>>> f871736b9dac279b498d22ab88cbce817e7e48b7
 });
 
 module.exports = User = mongoose.model('user', UsersSchema);

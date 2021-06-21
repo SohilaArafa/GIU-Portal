@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .App {
+=======
+/* .App {
+>>>>>>> f871736b9dac279b498d22ab88cbce817e7e48b7
   text-align: center;
 }
 
@@ -36,3 +40,14 @@
     transform: rotate(360deg);
   }
 }
+<<<<<<< HEAD
+=======
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 100ms ease-in;
+  
+}
+
+
+>>>>>>> f871736b9dac279b498d22ab88cbce817e7e48b7
