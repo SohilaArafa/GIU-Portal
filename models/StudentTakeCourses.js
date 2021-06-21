@@ -12,13 +12,14 @@ const StudentTakeCoursesSchema = new Schema({
         required: true
     },
     CourseGrade : {
-        type: mongoose.Types.Decimal128, 
+        type: mongoose.Decimal128, 
         required: true
     },
     SemesterNumber : {
         type: String,
         required: true 
     }, 
+    Student: { type: mongoose.Schema.Types.ObjectId, ref: 'user' }
 });
 
 module.exports = StudentTakeCourses = mongoose.model('StudentTakeCourses', StudentTakeCoursesSchema);

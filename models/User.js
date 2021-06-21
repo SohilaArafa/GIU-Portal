@@ -30,9 +30,6 @@ const UsersSchema = new Schema({
     profile:{
         type: String,
         required: true
-    },
-    courses: {
-        type: { type: mongoose.Types.ObjectId, ref: 'course' }    
     }
 });
 

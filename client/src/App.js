@@ -1,12 +1,12 @@
 
 
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppNavbar from './components/AppNavbar';
 import TA from './components/TA';
 import './App.css';
-import View_Grades from './components/View_Grades';
-
+// import View_Grades from './components/View_Grades';s
+import ChangePass from './components/ChangePass';
 
 import {
   BrowserRouter as Router,
@@ -23,10 +23,10 @@ function App() {
     <Router>
       <div className="App">
         <AppNavbar />
-        <ChangePass />
       </div>
 
       <Switch>
+        <Route path="/change-password"><ChangePass /></Route>
         <Route path="/ta"><TA /></Route>
         <Route path="/course-students/:course"><CourseStudents /></Route>
       </Switch>
