@@ -14,11 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/dimashaheen/SEproject.git"
   },
-<<<<<<< HEAD
   "author": "Dima Shaheen",
-=======
-  "author": "Farah Watidy",
->>>>>>> f871736b9dac279b498d22ab88cbce817e7e48b7
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dimashaheen/SEproject/issues"
@@ -27,10 +23,6 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^6.2.0",
-<<<<<<< HEAD
-=======
-    "cors": "^2.8.5",
->>>>>>> f871736b9dac279b498d22ab88cbce817e7e48b7
     "express": "^4.17.1",
     "mongoose": "^5.12.14"
   },
