@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UsersSchema = new Schema({
+    id:{
+        type: String,
+        required: true
+    },
     fname:{
         type: String,
         required: true
@@ -27,6 +31,10 @@ const UsersSchema = new Schema({
         type: String,
         required: true
     },
+    requiredQuestions:{
+        type: String,
+        required: true
+    }
 });
 
 module.exports = Courses = mongoose.model('user', UsersSchema);
