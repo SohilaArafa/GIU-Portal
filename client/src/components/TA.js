@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uploadGrades from '../../routes/api/uploadGrades';
 import {
     Card,
     CardBody,
@@ -72,7 +73,14 @@ class TA extends Component {
                                             { course.CourseID }</CardSubtitle>
                                         <Link to={"/course-students/"+course.CourseID} component={Button}>
                                             View Students
-                                        </Link>
+                                        </Link> 
+                                        <button
+                                          OnClick={()=>{
+                                            updateStudent(val.id);
+                                          }}
+                                        >
+                                          Update 
+                                        </button>         
 
                                     </CardBody>
                                 </Card>

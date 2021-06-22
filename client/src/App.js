@@ -4,6 +4,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppNavbar from './components/AppNavbar';
 import TA from './components/TA';
+import uploadGrades from '../../routes/api/uploadGrades';
 import './App.css';
 // import View_Grades from './components/View_Grades';s
 import ChangePass from './components/ChangePass';

@@ -1,17 +1,21 @@
 const express=require('express');
 const app=express();
 const mongoose=require("mongoose");
-const coursesModel=require('./models/Courses');
+//const coursesModel=require('./models/Courses');
+const studentTakeCourse = require('./models/StudentTakeCourses');
 import {connect } from 'react-redux';
 // import {getCourse} from '..actions/itemActions';
 import PropTypes from'prop-types'
 app.put('/update',async (req,res) =>{
 const newGrade= req.body.newGrade;
-const id= req.body.id;
+const SID= req.body.SID;
+const CourseID= req.body.CourseID;
+
+
 
 try {
-     await coursesModel.findyById(id,(error, studentToUpdate) =>{
-      studentToUpdate.courseGrade=newGrade;
+     await studentTakeCourse.find(SID, CourseID,(error, studentToUpdate) =>{
+      studentToUpdate.CourseGrade=newGrade;
       studentToUpdate.save();
      });
 
@@ -25,15 +29,16 @@ import logo from './logo.svg';
 import Axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
+import Course from '../../models/Course';
 
 // componentDidMount () {
 //   this.props.getCourse();
 // }
 function App() {
  
-  const{id,setId}=useState("");
-  const{name,setName}=useState("");
-  const{courseName,setCourseName}=useState("");
+  const{SID,setId}=useState("");
+  const{SemesterNumber,setSemesterNumber}=useState("");
+  const{CourseID,setCourseID}=useState("");
   const{courseGrade,setCourseGrade}=useState(0);
   const{listOfStudents,setListOfStudents}=useState([]);
   return (
@@ -45,30 +50,26 @@ function App() {
            type="text"/>
         <input 
           type="number"/>
+        <input
+          type="number"/>  
       </div>
     </div>
   );
   }
 
-const updateStudent=(id)=>{
+const updateStudent=(SID,CourseID)=>{
 const newGrade= window.promt("Enter new grade");
 
-Axios.put("http://localhost:3000/update",{ newGrade: newGrade, id: id }).then(()=>{
+Axios.put("http://localhost:3000/update",{ newGrade: newGrade, SID: SID,CourseID: CourseID }).then(()=>{
    setListOfStudents(listOfStudent.map((val) => {
-    return val.id==id ? {id: id,name: val.name,courseName:val.courseName, grade: newGrade} :val;
+    return val.SID==SID ? {SID: SID,CourseID: CourseID,SemesterNumber:val.SemesterNumber, grade: newGrade} :val;
           
     }))
   })
 };
 
 
-<button
-  OnClick={()=>{
-    updateStudent(val.id);
-  }}
->  
-  Update
-</button>  
+  
 
 App.protoTypes={
   getCourse:PropTypes.func.isRequired,
