@@ -2,8 +2,9 @@ const express=require('express');
 const app=express();
 const mongoose=require("mongoose");
 const coursesModel=require('./models/Courses');
-
-
+import {connect } from 'react-redux';
+// import {getCourse} from '..actions/itemActions';
+import PropTypes from'prop-types'
 app.put('/update',async (req,res) =>{
 const newGrade= req.body.newGrade;
 const id= req.body.id;
@@ -25,7 +26,11 @@ import Axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 
+// componentDidMount () {
+//   this.props.getCourse();
+// }
 function App() {
+ 
   const{id,setId}=useState("");
   const{name,setName}=useState("");
   const{courseName,setCourseName}=useState("");
@@ -65,6 +70,16 @@ Axios.put("http://localhost:3000/update",{ newGrade: newGrade, id: id }).then(()
   Update
 </button>  
 
+App.protoTypes={
+  getCourse:PropTypes.func.isRequired,
+  course :PropTypes.object.isRequired
+}
 
 
-export default App;
+const mapStateToProps=(state)=>({
+  course: state.course
+});
+
+
+
+export default connect (mapStateToProps,{getCourse})(App);
