@@ -19,7 +19,8 @@ const StudentTakeCoursesSchema = new Schema({
         type: String,
         required: true 
     }, 
-    Student: { type: mongoose.Schema.Types.ObjectId, ref: 'user' }
+    Student: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
+    Course: { type: mongoose.Schema.Types.ObjectId, ref: 'course' }
 });
 
 module.exports = StudentTakeCourses = mongoose.model('StudentTakeCourses', StudentTakeCoursesSchema);

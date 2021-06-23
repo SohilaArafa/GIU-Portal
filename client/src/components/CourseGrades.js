@@ -9,31 +9,40 @@ import {
 import { withRouter } from "react-router";
 
 
-class CourseStudents extends Component {
+class CourseGrades extends Component {
     state = {
-        CourseID: "SE101",
-        students: []
+        SemesterNumber : "", //"Winter19" ,
+     // course : [] , 
+    //  CourseGrade : []
+        course : [
+            // {
+            //     Name: "Sotware Engineering",
+            //     CID : "SE101",
+            //     CourseGrade: 78.0 ,
+            // }
+        ]
     }
 
     async componentDidMount () {
-
-        console.log(this.props)
         
-        const CourseID = this.state.CourseID //localStorage.getItem('CourseID')
-        fetch("http://localhost:5000/api/viewClassStudents/students/" + CourseID)
+
+        const { SID, SemesterNumber } = this.props.match.params
+
+
+        fetch(`http://localhost:5000/api/viewClassStudents/grades/${SemesterNumber}/${SID}`)
         .then(res => res.json())
         .then(
-          (students) => {
+          (course) => {
 
-            if (students.error) {
+            if (course.error) {
                 alert('Error from database')
-                console.log(students.error)
+                console.log(course.error)
                 return 
             }
 
 
-            console.log(students)
-            this.setState({ students });
+            console.log(course)
+            this.setState({ course, SemesterNumber });
 
           },
           (error) => {
@@ -42,38 +51,34 @@ class CourseStudents extends Component {
             console.log(error)
             
           })
-     
-
     }
 
     // async getStudentsFromDB (CourseID) {
     //     console.log(CourseID)
     // }
-
-    
     render () {
         return (
             <Container>
                 <Row>
-                    <Col xs="12"><h1>Software Engineering 101 - { this.state.CourseID } </h1></Col>
+                    <Col xs="12"><h1>Results - { this.state.SemesterNumber } </h1></Col>
                     <Col xs="12" style={{ paddingTop: '2em' }}>
                         <Table>
                             <thead>
                                 <tr>
-                                    <th>Student ID</th>
+                                
                                     <th>Name</th>
-                                    <th>Semester</th>
+                                    <th>Course ID</th>
                                     <th>Grade</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    this.state.students.map((student, i) => (
+                                    this.state.course.map((course, i) => (
                                         <tr key={i}>
-                                            <th scope="row">{ student.SID }</th>
-                                            <td>{ `${student.Student.fname} ${student.Student.lname}`  }</td>
-                                            <td>{ student.SemesterNumber }</td>
-                                            <td>{ student.CourseGrade.$numberDecimal }</td>
+                                            
+                                            <td>{ course.Course && course.Course.Name }</td>
+                                            <td>{ course.CourseID }</td>
+                                            <td>{ course.CourseGrade && course.CourseGrade.$numberDecimal }</td>
                                         </tr>
                                     ))
                                 }
@@ -87,6 +92,4 @@ class CourseStudents extends Component {
     }
 }
 
-
-
-export default withRouter(CourseStudents);
+export default withRouter(CourseGrades);
