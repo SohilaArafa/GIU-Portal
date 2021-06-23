@@ -26,6 +26,10 @@ const UsersSchema = new Schema({
     profile:{
         type: String,
         required: true
+    },
+    requiredQuestions:{
+        type: String,
+        required: true
     }
 });
 
