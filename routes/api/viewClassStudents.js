@@ -47,6 +47,8 @@ router.get('/grades/:SemesterNumber/:SID', (req, res) => {
   const SemesterNumber = req.params.SemesterNumber
 
   StudentTakeCourses.find({ SID, SemesterNumber })
+    .populate({ path: 'Course', select: 'Name' })
+    .exec()
     .then(Enrollments => res.json(Enrollments))
     .catch(err => res.status(400).json({ success: false, error: err }))
  
@@ -97,7 +99,7 @@ router.post('/user', (req, res) => {
 router.post('/', (req, res) => {
 
   const studentTakeCoursesData = req.body
-  const studentTakeCourses = new StudentTakeCourses({ studentTakeCoursesData });
+  const studentTakeCourses = new StudentTakeCourses({ ...studentTakeCoursesData });
 
   studentTakeCourses.save(function (err) {
 
