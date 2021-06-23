@@ -2,24 +2,31 @@ import React, { Component } from 'react';
 import AppNavbar from './components/AppNavbar';
 import ChangePass from './components/ChangePass';
 
-import { Provider } from 'react-redux';
-import store from './store';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-class App extends Component {
-  render (){
-  return (
-    <Provider store={store}>
-    <div className="App">
-      <AppNavbar />
-      <ChangePass />
-    </div>
-    </Provider>
-  );    
-}}
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
 
+} from "react-router-dom";
+
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <AppNavbar />
+      </div>
+      <Switch>
+        <Route path="/change-password"><ChangePass /></Route>
+      </Switch>
+    </Router>
+);
+
+
+}
 
 
 export default App;

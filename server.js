@@ -23,7 +23,7 @@ mongoose
 // User Routes
 // Listen for your user story and link to constant created above
 app.use('/api/items', items);
-app.use('/api/changepass', changepass);
+app.use('.routes/api/changepass', changepass);
 
 const port = process.env.PORT || 5000;
 
