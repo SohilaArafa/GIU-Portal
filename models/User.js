@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UsersSchema = new Schema({
+    id:{
+        type: String,
+        required: true
+    },
     fname:{
         type: String,
         required: true
@@ -30,6 +34,9 @@ const UsersSchema = new Schema({
     requiredQuestions:{
         type: String,
         required: true
+    },
+    faculty:{
+        
     }
 });
 
