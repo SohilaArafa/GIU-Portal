@@ -6,46 +6,56 @@ import {
     Col
 } from 'reactstrap';
 
+import { withRouter } from "react-router";
+
+
 class CourseStudents extends Component {
     state = {
-        students: [
-            {
-                SID: '213',
-                Name: 'Ahmed Mahmoud',
-                CourseID: '321',
-                CourseGrade: 77.55,
-                SemesterNumber: 'Semester 1'
-            },
-            {
-                SID: '214',
-                Name: 'Ibrahim Hebo',
-                CourseID: '321',
-                CourseGrade: 80.51,
-                SemesterNumber: 'Semester 1'
-            },
-            {
-                SID: '215',
-                Name: 'Farah Sheko',
-                CourseID: '321',
-                CourseGrade: 77.55,
-                SemesterNumber: 'Semester 1'
-            },
-            {
-                SID: '2166',
-                Name: 'Hend Sabre',
-                CourseID: '321',
-                CourseGrade: 77.55,
-                SemesterNumber: 'Semester 1'
-            }
-        ]
+        CourseID: "SE101",
+        students: []
     }
+
+    async componentDidMount () {
+        
+        const CourseID = this.state.CourseID //localStorage.getItem('CourseID')
+        fetch("http://localhost:5000/api/viewClassStudents/students/" + CourseID)
+        .then(res => res.json())
+        .then(
+          (students) => {
+
+            if (students.error) {
+                alert('Error from database')
+                console.log(students.error)
+                return 
+            }
+
+
+            console.log(students)
+            this.setState({ students });
+
+          },
+          (error) => {
+            
+            alert('Error fetching data')
+            console.log(error)
+            
+          })
+     
+
+    }
+
+    // async getStudentsFromDB (CourseID) {
+    //     console.log(CourseID)
+    // }
+
     
     render () {
+
 
         return (
             <Container>
                 <Row>
-                    <Col xs="12"><h1>Software Engineering 101 - SE101</h1></Col>
+                    <Col xs="12"><h1>Software Engineering 101 - { this.state.CourseID } </h1></Col>
                     <Col xs="12" style={{ paddingTop: '2em' }}>
                         <Table>
                             <thead>
@@ -58,12 +68,12 @@ class CourseStudents extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.students.map(student => (
-                                        <tr>
+                                    this.state.students.map((student, i) => (
+                                        <tr key={i}>
                                             <th scope="row">{ student.SID }</th>
-                                            <td>{ student.Name }</td>
+                                            <td>{ `${student.Student.fname} ${student.Student.lname}`  }</td>
                                             <td>{ student.SemesterNumber }</td>
-                                            <td>{ student.CourseGrade }</td>
+                                            <td>{ student.CourseGrade.$numberDecimal }</td>
                                         </tr>
                                     ))
                                 }
@@ -79,4 +89,4 @@ class CourseStudents extends Component {
 
 
 
-export default CourseStudents;
+export default withRouter(CourseStudents);
