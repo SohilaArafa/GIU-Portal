@@ -21,6 +21,7 @@ function App() {
       </div>
       <Switch>
         <Route path="/change-password"><ChangePass /></Route>
+       
       </Switch>
     </Router>
 );
