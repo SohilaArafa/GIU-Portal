@@ -96,7 +96,9 @@ router.post('/user', (req, res) => {
 
 router.post('/', (req, res) => {
 
+  console.log('From ')
   const studentTakeCoursesData = req.body
+  console.log(studentTakeCoursesData)
   const studentTakeCourses = new StudentTakeCourses({ studentTakeCoursesData });
 
   studentTakeCourses.save(function (err) {
@@ -109,7 +111,9 @@ router.post('/', (req, res) => {
     res.json({ success: 'Enrollment Saved', error: null })
 
 
-  });
+  }
+  )
+   .catch(err => res.status(400).json({ success: false, error: err }));
 })
 
 router.delete('/:id', (req, res) => {
