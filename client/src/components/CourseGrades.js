@@ -11,20 +11,25 @@ import { withRouter } from "react-router";
 
 class CourseGrades extends Component {
     state = {
+        SemesterNumber : "", //"Winter19" ,
+     // course : [] , 
+    //  CourseGrade : []
         course : [
-             {
-        SemesterNumber : "Winter19" ,
-        CourseGrade: 78.0 ,
-        CID : "SE101",
-     }
-
+            // {
+            //     Name: "Sotware Engineering",
+            //     CID : "SE101",
+            //     CourseGrade: 78.0 ,
+            // }
         ]
     }
 
     async componentDidMount () {
         
-        const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
-        fetch("http://localhost:5000/api/viewClassStudents/students/" + SemesterNumber)
+
+        const { SID, SemesterNumber } = this.props.match.params
+
+
+        fetch(`http://localhost:5000/api/viewClassStudents/grades/${SemesterNumber}/${SID}`)
         .then(res => res.json())
         .then(
           (course) => {
@@ -37,7 +42,7 @@ class CourseGrades extends Component {
 
 
             console.log(course)
-            this.setState({ course });
+            this.setState({ course, SemesterNumber });
 
           },
           (error) => {
@@ -46,18 +51,12 @@ class CourseGrades extends Component {
             console.log(error)
             
           })
-     
-
     }
 
     // async getStudentsFromDB (CourseID) {
     //     console.log(CourseID)
     // }
-
-    
     render () {
-
-
         return (
             <Container>
                 <Row>
@@ -66,9 +65,9 @@ class CourseGrades extends Component {
                         <Table>
                             <thead>
                                 <tr>
-                                    <th>Student ID</th>
+                                
                                     <th>Name</th>
-                                    <th>Semester</th>
+                                    <th>Course ID</th>
                                     <th>Grade</th>
                                 </tr>
                             </thead>
@@ -76,10 +75,10 @@ class CourseGrades extends Component {
                                 {
                                     this.state.course.map((course, i) => (
                                         <tr key={i}>
-                                            <th scope="row">{ course.SID }</th>
-                                            <td>{ course.Course.name   }</td>
-                                            <td>{ course.CID }</td>
-                                            <td>{ course.CourseGrade.$numberDecimal }</td>
+                                            
+                                            <td>{ course.Course && course.Course.Name }</td>
+                                            <td>{ course.CourseID }</td>
+                                            <td>{ course.CourseGrade && course.CourseGrade.$numberDecimal }</td>
                                         </tr>
                                     ))
                                 }
@@ -92,7 +91,5 @@ class CourseGrades extends Component {
         )
     }
 }
-
-
 
 export default withRouter(CourseGrades);

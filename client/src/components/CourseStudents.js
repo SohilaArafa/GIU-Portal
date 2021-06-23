@@ -16,6 +16,8 @@ class CourseStudents extends Component {
     }
 
     async componentDidMount () {
+
+        console.log(this.props)
         
         const CourseID = this.state.CourseID //localStorage.getItem('CourseID')
         fetch("http://localhost:5000/api/viewClassStudents/students/" + CourseID)
@@ -50,8 +52,6 @@ class CourseStudents extends Component {
 
     
     render () {
-
-
         return (
             <Container>
                 <Row>

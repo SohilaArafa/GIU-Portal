@@ -25,9 +25,9 @@ function App() {
 
       <Switch>
         <Route path="/ta"><TA /></Route>
-        <Route path="/course-students"><CourseStudents /></Route>
+        <Route path="/course-students/:course"><CourseStudents /></Route>
         <Route path="/students"><Student /></Route>
-        <Route path="/course-grade"><CourseGrades /></Route>
+        <Route path="/course-grade/:SemesterNumber/:SID"><CourseGrades /></Route>
       </Switch>
     </Router>
 );

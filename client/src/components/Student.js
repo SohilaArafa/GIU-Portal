@@ -17,18 +17,20 @@ import {
 class Student extends Component {
    
         state = {
+
+            SID: '100-1941',
             semester: [
                 {
                     SemesterNumber: 'Winter19' ,
-                    SID: "100-2324"
+                    SID: "100-1941"
                 },
                 {
                     SemesterNumber: 'Spring20',
-                    SID: "100-2325"
+                    SID: "100-1941"
                 },
                 {
                     SemesterNumber: 'Winter20',
-                    SID: "100-2329"
+                    SID: "100-1941"
                 },
             ]
         } 
@@ -66,7 +68,6 @@ class Student extends Component {
               })
     
         }
-
  render () {
         return (
             <Container>
@@ -76,10 +77,10 @@ class Student extends Component {
                                 <Card>
                                     <CardBody>
                                         <CardTitle tag="h5">{ semester.SemesterNumber }</CardTitle>
-                                        <Link to={"/course-grade/"+semester.SID} component={Button}>
+                                        <Link style={{ marginRight: '1em' }} to={"/course-grade/"+semester.SemesterNumber + '/' + semester.SID} component={Button}>
                                             View Grade 
                                         </Link>
-
+                                        <Button>View Info</Button>
                                     </CardBody>
                                 </Card>
                             </Col>
