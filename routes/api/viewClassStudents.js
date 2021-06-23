@@ -96,24 +96,21 @@ router.post('/user', (req, res) => {
 
 router.post('/', (req, res) => {
 
-  console.log('From ')
   const studentTakeCoursesData = req.body
-  console.log(studentTakeCoursesData)
-  const studentTakeCourses = new StudentTakeCourses({ studentTakeCoursesData });
+  const studentTakeCourses = new StudentTakeCourses({ ...studentTakeCoursesData });
 
-  studentTakeCourses.save(function (err) {
+  studentTakeCourses
+    .save(function (err) {
 
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ success: false, error: err })
-    }
+      if (err) {
+        console.log(err);
+        return res.status(400).json({ success: false, error: err })
+      }
 
-    res.json({ success: 'Enrollment Saved', error: null })
+      res.json({ success: 'Enrollment Saved', error: null })
 
 
-  }
-  )
-   .catch(err => res.status(400).json({ success: false, error: err }));
+   });
 })
 
 router.delete('/:id', (req, res) => {
