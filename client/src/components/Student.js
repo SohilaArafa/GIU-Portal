@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 import {
-    ListGroup,
-    ListGroupItem,
+    Card,
+    CardBody,
+    CardTitle,
+    CardSubtitle,
     Container,
-
+    Row,
+    Col,
+    Button
 } from 'reactstrap';
+import {
+    Link
+} from 'react-router-dom'
+
 
 class Student extends Component {
    
         state = {
             semester: [
                 {
-                    SemesterNumber: 'Winter19'
+                    SemesterNumber: 'Winter19' ,
+                    SID: "100-2324"
                 },
                 {
-                    SemesterNumber: 'Spring20'
+                    SemesterNumber: 'Spring20',
+                    SID: "100-2325"
                 },
                 {
-                    SemesterNumber: 'Winter20'
+                    SemesterNumber: 'Winter20',
+                    SID: "100-2329"
                 },
             ]
         } 
@@ -58,14 +69,24 @@ class Student extends Component {
 
  render () {
         return (
-        <Container>
-            { this.state.semester.map(semester => (
-            <ListGroup>
-                <ListGroupItem  tag="button" action>{semester.SemesterNumber}</ListGroupItem>      
-          </ListGroup>
-                      ))
+            <Container>
+                <Row>
+                    { this.state.semester.map((semester, i) => (
+                            <Col xs="12" md="6" lg="4" key={i}>
+                                <Card>
+                                    <CardBody>
+                                        <CardTitle tag="h5">{ semester.SemesterNumber }</CardTitle>
+                                        <Link to={"/course-grade/"+semester.SID} component={Button}>
+                                            View Grade 
+                                        </Link>
+
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        ))
                     }
-        </Container>
+                </Row>
+            </Container>
         )
     }
 
