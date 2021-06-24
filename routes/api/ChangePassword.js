@@ -2,13 +2,11 @@ const express = require('express');
 const router = express.Router();
 const jwt = require ('jsonwebtoken');
 
-// // User Model
-// const User = require('../../models/User');
-// const mongoose = require('mongoose');
-// const password = require('../../models/User');
-// const { update } = require('../../models/User');
-
-const password =require ("../models/User");
+// User Model
+const User = require('../../models/User');
+const mongoose = require('mongoose');
+const password = require('../../models/User');
+const { update } = require('../../models/User');
 
 
 // router.update('/email', (req, res) => {
@@ -19,8 +17,49 @@ const password =require ("../models/User");
 //     .catch(err => res.status(400).json(err))
 // });
 
+router.get('/password/:email', (req, res) => {
 
+    const email = req.params.email
+    Users.find({ email })
+      .exec()
+      .catch(err => res.status(400).json({ success: false, error: err }))
+   
+  });
 
+  router.post('/user', (req, res) => {
+
+    const userData = req.body
+  
+    const user = new User(userData);
+    user.save(function (err) {
+  
+      if (err) {
+        console.log(err);
+        return res.status(400).json({ success: false, error: err })
+      }
+  
+      res.json({ success: 'User data Saved', error: null })
+    }
+  
+    )
+  });
+  router.put('/updatePassword/:email', (req,res) =>{
+    const newPassword= req.body.newPassword;
+    const email= req.body.email;
+    
+      users.find({email})
+          .then(passwordToUpdate =>{
+          passwordToUpdate.password=newPassword;
+          passwordToUpdate.save()})
+    
+         if (err) {
+          console.log(err);
+          return res.status(400).json({ success: false, error: err })
+        }
+    
+        res.json({ success: 'password Updated', error: null })
+        
+      });
 
 // @route   POST api/changepass
 // @desc    Create an Item
@@ -34,4 +73,5 @@ const password =require ("../models/User");
 // });
 
 
- module.exports = router; 
+ module.exports = router ;
+ 

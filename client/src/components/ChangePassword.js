@@ -11,7 +11,7 @@ class ChangePassword extends Component {
     }
     async componentDidMount () {
         const UserName = this.state.UserName //localStorage.getItem('CourseID')
-        fetch("http://localhost:5000/api/changepass/user" + UserName)
+        fetch("http://localhost:5000/api/ChangePassword/user" + UserName)
         .then(res => res.json())
         .then(
           (user) => {
