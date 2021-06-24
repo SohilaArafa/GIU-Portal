@@ -3,7 +3,6 @@ import {
     Card,
     CardBody,
     CardTitle,
-    CardSubtitle,
     Container,
     Row,
     Col,
@@ -80,7 +79,9 @@ class Student extends Component {
                                         <Link style={{ marginRight: '1em' }} to={"/course-grade/"+semester.SemesterNumber + '/' + semester.SID} component={Button}>
                                             View Grade 
                                         </Link>
-                                        <Button>View Info</Button>
+                                        <Link style={{ marginRight: '1em' }} to={"/course-details/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
+                                          View Major Courses 
+                                        </Link>
                                     </CardBody>
                                 </Card>
                             </Col>

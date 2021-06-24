@@ -36,7 +36,8 @@ const UsersSchema = new Schema({
         required: true
     },
     faculty:{
-        
+        type: String,
+        required: true
     }
 });
 

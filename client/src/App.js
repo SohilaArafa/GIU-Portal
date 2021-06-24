@@ -6,6 +6,7 @@ import './App.css';
 //import ChangePass from './components/ChangePass';
 import Student from './components/Student';
 import CourseGrades from './components/CourseGrades';
+import CourseDetails from './components/CourseDetails';
 
 import {
   BrowserRouter as Router,
@@ -16,6 +17,8 @@ import {
   // useParams
 } from "react-router-dom";
 import CourseStudents from './components/CourseStudents';
+import UploadGrades from './components/uploadGrades';
+
 function App() {
   return (
     <Router>
@@ -25,9 +28,11 @@ function App() {
 
       <Switch>
         <Route path="/ta"><TA /></Route>
-        <Route path="/course-students/:course"><CourseStudents /></Route>
+        <Route path="/course-students/:CourseID"><CourseStudents /></Route>
         <Route path="/students"><Student /></Route>
         <Route path="/course-grade/:SemesterNumber/:SID"><CourseGrades /></Route>
+        <Route path="/course-details/:SemesterNumber/:CourseMajor/:SID"><CourseDetails /></Route>
+        <Route path="/upload-grade/:CourseID/:SID"><UploadGrades /></Route>
       </Switch>
     </Router>
 );

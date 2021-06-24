@@ -6,12 +6,13 @@ const mongoose = require('mongoose');
 const Course = require('../../models/Course');
 const User = require('../../models/User');
 const StudentTakeCourses = require('../../models/StudentTakeCourses');
+const { Router } = require('express');
 
 // @route   POST api/viewClassStudents
 // @desc    Create an Item
 // @access  Public
 
-
+//Getting courses by the Ta id
 router.get('/courses/:TaID', (req, res) => {
 
   const TaID = req.params.TaID
@@ -27,20 +28,55 @@ router.get('/courses/:TaID', (req, res) => {
 
 });
 
+// ta uploading/updating a grade
+router.put('/updateGrade', (req,res) => {
+  
+  const { _id, CourseGrade } = req.body;
+
+  console.log(req.body)
+
+  StudentTakeCourses
+    .findOne({ _id })
+    .then(enrollment => {
+      
+      enrollment.CourseGrade = CourseGrade.$numberDecimal
+      enrollment
+        .save()
+        .then({ success: 'Grade Updated', error: null })
+        .catch(err => res.status(400).json({ success: false, error: err }))
+
+    })
+    .catch(err => {
+      console.log(err) 
+      res.status(400).json({ success: false, error: err })
+    })
+
+  });
+  
+
+//getting students taking this specific course
 router.get('/students/:course', (req, res) => {
 
   const CourseID = req.params.course
 
-  StudentTakeCourses
-    .find({ CourseID })
-    .populate({ path: 'Student', select: 'fname lname' })
-    .exec()
-    .then(Enrollments => res.json(Enrollments))
+  Course
+    .findOne({ CourseID })
+    .then(course => {
+
+      StudentTakeCourses
+      .find({ CourseID })
+      .populate({ path: 'Student', select: 'fname lname' })
+      .exec()
+      .then(students => res.json({ students, course }))
+      .catch(err => res.status(400).json({ success: false, error: err }))
+      
+    })
     .catch(err => res.status(400).json({ success: false, error: err }))
 
  
 });
 
+//getting grades of a specific student in a specific semester
 router.get('/grades/:SemesterNumber/:SID', (req, res) => {
 
   const SID = req.params.SID
@@ -52,8 +88,24 @@ router.get('/grades/:SemesterNumber/:SID', (req, res) => {
  
 });
 
+//getting course details using the courseid,semester,major,and student id
+router.get('/CourseDetails/:CourseID/:SemesterNumber:/CourseMajor:/SID', (req, res) => {
+
+  const SID = req.params.SID
+  const SemesterNumber = req.params.SemesterNumber
+  //const CourseID = req.params.CourseID
+  const CourseMajor = req.params.CourseMajor
+
+  StudentTakeCourses.find({ SID, SemesterNumber , CourseMajor  })
+    .populate({ path: 'Course', select: 'Name' })
+    .exec()
+    .then(Enrollments => res.json(Enrollments))
+    .catch(err => res.status(400).json({ success: false, error: err }))
+ 
+});
 
 
+//creating a new course
 router.post('/course', (req, res) => {
 
   const courseData = req.body
@@ -74,6 +126,7 @@ router.post('/course', (req, res) => {
 
 })
 
+//creating a new user
 router.post('/user', (req, res) => {
 
   const userData = req.body
@@ -94,6 +147,7 @@ router.post('/user', (req, res) => {
 
 })
 
+//enrolling students
 router.post('/', (req, res) => {
 
   const studentTakeCoursesData = req.body
@@ -113,6 +167,7 @@ router.post('/', (req, res) => {
    });
 })
 
+//deleting from student enrollments
 router.delete('/:id', (req, res) => {
 
   const _id = req.params.id

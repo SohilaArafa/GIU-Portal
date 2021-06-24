@@ -3,37 +3,82 @@ import {
     Table,
     Container,
     Row,
-    Col
+    Col,
+    Button
 } from 'reactstrap';
 
 import { withRouter } from "react-router";
-
+import uploadGrades from './uploadGrades';
 
 class CourseStudents extends Component {
     state = {
-        CourseID: "SE101",
+        course: {},
         students: []
     }
 
-    async componentDidMount () {
-
-        console.log(this.props)
+    activateEdit (student, index, off) {
         
-        const CourseID = this.state.CourseID //localStorage.getItem('CourseID')
-        fetch("http://localhost:5000/api/viewClassStudents/students/" + CourseID)
+        const students = this.state.students
+        
+        student.isEditMode = off ? false : true
+        students.splice(index, 1, student)
+
+        this.setState({ students })
+
+    }
+
+    saveToDb (student, index) {
+
+        this.activateEdit(student, index, true)
+
+        fetch('http://localhost:5000/api/viewClassStudents/updateGrade', {
+            method: 'PUT', 
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(student) 
+        })
+        .then(res => res.json())
+        .then(res => {
+            if (res.error)  {
+                console.log(res)
+                alert(res.error.message)
+                return 
+            }
+            return alert(res.success)
+        }).catch(console.log)
+        
+    }
+
+    updateGrade (student, index, event) {
+
+        const students = this.state.students
+        
+        student.CourseGrade.$numberDecimal = event.target.value
+        students.splice(index, 1, student)
+
+        this.setState({ students })
+
+    }
+
+    componentDidMount () {
+
+        
+        const { CourseID } = this.props.match.params //localStorage.getItem('CourseID')
+        fetch(`http://localhost:5000/api/viewClassStudents/students/${CourseID}`)
         .then(res => res.json())
         .then(
-          (students) => {
+          (data) => {
 
-            if (students.error) {
+            const { students, course } = data
+
+            console.log(data)
+
+            if (data.error) {
                 alert('Error from database')
                 console.log(students.error)
                 return 
             }
 
-
-            console.log(students)
-            this.setState({ students });
+            this.setState({ students, course });
 
           },
           (error) => {
@@ -42,6 +87,7 @@ class CourseStudents extends Component {
             console.log(error)
             
           })
+
      
 
     }
@@ -52,11 +98,15 @@ class CourseStudents extends Component {
 
     
     render () {
+
+        const { course, students } = this.state
+
         return (
             <Container>
                 <Row>
-                    <Col xs="12"><h1>Software Engineering 101 - { this.state.CourseID } </h1></Col>
+                    <Col xs="12"><h1>{ course.Name } - { course.CourseID } </h1></Col>
                     <Col xs="12" style={{ paddingTop: '2em' }}>
+                    
                         <Table>
                             <thead>
                                 <tr>
@@ -68,12 +118,25 @@ class CourseStudents extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.students.map((student, i) => (
+                                    students.map((student, i) => (
                                         <tr key={i}>
                                             <th scope="row">{ student.SID }</th>
                                             <td>{ `${student.Student.fname} ${student.Student.lname}`  }</td>
                                             <td>{ student.SemesterNumber }</td>
-                                            <td>{ student.CourseGrade.$numberDecimal }</td>
+                                            <td>
+                                                {
+                                                    student.isEditMode ? 
+                                                       (<input type="number" value={ student.CourseGrade.$numberDecimal } onChange={ e => this.updateGrade(student, i, e) } />)
+                                                    :  <span>{ student.CourseGrade.$numberDecimal }</span>
+                                                }
+                                            </td>
+                                            <td> 
+                                                {
+                                                    student.isEditMode ? 
+                                                    (<Button type="primary" onClick={() => this.saveToDb(student, i)}>Save</Button>) 
+                                                    :   (<Button onClick={() => this.activateEdit(student, i)}>Edit</Button>) 
+                                                }  
+                                            </td>
                                         </tr>
                                     ))
                                 }
