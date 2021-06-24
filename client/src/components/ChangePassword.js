@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
 import { Button, FormGroup, ButtonGroup, Label, } from 'reactstrap';
 import { withRouter } from 'react-router';
+import {
+  Link
+} from 'react-router-dom'
 
 class ChangePassword extends Component {
     state = { 
@@ -57,9 +60,9 @@ class ChangePassword extends Component {
                 <Label for="Password">New Password</Label>
                 <Input type="password" name="password" id="examplePassword" />
                 </FormGroup>
-                <ButtonGroup>
-                <Button>Submit</Button>
-                </ButtonGroup>
+                <Link style={{ marginRight: '1em' }} to={"/Change_Password/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
+                    Submit
+                </Link>
              </div>
     
   )

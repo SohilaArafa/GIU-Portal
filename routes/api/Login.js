@@ -29,13 +29,13 @@ const User = require('../../models/User');
 // @desc    Get ALL Users
 // @access  Public
 router.get('/:email&:password', (req, res) => {
-    User.find({ email:req.params.email , password:req.params.password  })
-    .then(users => {res.json(users) })
-    .catch(err => {
-      console.log(err)
-      res.status(400).json({ success: false, error: err });
-    })
-   
+  User.find({ email:req.params.email , password:req.params.password  })
+  .then(users => {res.json(users) })
+  .catch(err => {
+    console.log(err)
+    res.status(400).json({ success: false, error: err });
+  })
+ 
 
 });
 
