@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UsersSchema = new Schema({
-    if:{
+    id:{
         type: Number,
         required: true,
     },
@@ -31,6 +31,10 @@ const UsersSchema = new Schema({
         type: String,
         required: true
     },
+    resetLink: {
+        data: String,
+        default: ''
+    }
 });
 
 module.exports = User = mongoose.model('user', UsersSchema);

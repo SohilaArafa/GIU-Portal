@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+//import React, { Component } from 'react';
 import AppNavbar from './components/AppNavbar';
-import ChangePass from './components/ChangePass';
+import ChangePassword from './components/ChangePassword';
+import Login from './components/Login';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -20,7 +21,7 @@ function App() {
         <AppNavbar />
       </div>
       <Switch>
-        <Route path="/change-password"><ChangePass /></Route>
+        <Route path="/change-password"><ChangePassword /></Route>
         <Route path="/login"><Login /></Route>
       </Switch>
     </Router>

@@ -1,11 +1,14 @@
-// const express = require('express');
-// const router = express.Router();
+const express = require('express');
+const router = express.Router();
+const jwt = require ('jsonwebtoken');
 
 // // User Model
 // const User = require('../../models/User');
 // const mongoose = require('mongoose');
 // const password = require('../../models/User');
 // const { update } = require('../../models/User');
+
+const password =require ("../models/User");
 
 
 // router.update('/email', (req, res) => {

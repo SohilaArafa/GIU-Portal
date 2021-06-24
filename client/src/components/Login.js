@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-//import { render } from 'react-dom';
 import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
-import { Button, Form, FormGroup, ButtonGroup, Label, FormText } from 'reactstrap';
+import { Button, FormGroup, ButtonGroup, Label } from 'reactstrap';
 import { withRouter } from 'react-router';
 
 class Login extends Component {
@@ -20,7 +19,7 @@ async componentDidMount () {
 
       if (users.error) {
           alert('Error from database')
-          console.log(students.error)
+          console.log(users.error)
           return 
       }
 
@@ -44,13 +43,6 @@ async componentDidMount () {
 
         return (
             <div>
-                <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                <InputGroupText>@</InputGroupText>
-                </InputGroupAddon>
-                <Input placeholder="username" />
-                </InputGroup>
-             <br />
                 <InputGroup>
                 <Input placeholder="username" />
                 <InputGroupAddon addonType="append">

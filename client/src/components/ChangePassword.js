@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-//import { render } from 'reactstrap';
 import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
 import { Button, FormGroup, ButtonGroup, Label, } from 'reactstrap';
 import { withRouter } from 'react-router';
 
-
-
-
-
-
-class ChangePass extends Component {
+class ChangePassword extends Component {
     state = { 
             email: String,
             users: []
@@ -48,32 +42,25 @@ class ChangePass extends Component {
          return (
              <div>
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                        <InputGroupText>@</InputGroupText>
-                    </InputGroupAddon>
-                    <Input placeholder="username" />
+                <Input placeholder="username" />
+                <InputGroupAddon addonType="append">
+                <InputGroupText>@giu-uni.de</InputGroupText>
+                </InputGroupAddon>
                 </InputGroup>
-            <br />
-                <InputGroup>
-                    <Input placeholder="username" />
-        <InputGroupAddon addonType="append">
-          <InputGroupText>@giu-uni.de</InputGroupText>
-        </InputGroupAddon>
-      </InputGroup>
-      <br />
-      <FormGroup>
-        <Label for="Password">Current Password</Label>
-        <Input type="password" name="password" id="examplePassword"  />
-      </FormGroup>
-      <br />
-      <FormGroup>
-        <Label for="Password">New Password</Label>
-        <Input type="password" name="password" id="examplePassword" />
-      </FormGroup>
-      <ButtonGroup>
-      <Button>Submit</Button>
-      </ButtonGroup>
-      </div>
+              <br />
+                <FormGroup>
+                <Label for="Password">Current Password</Label>
+                <Input type="password" name="password" id="examplePassword"  />
+                </FormGroup>
+              <br />
+                <FormGroup>
+                <Label for="Password">New Password</Label>
+                <Input type="password" name="password" id="examplePassword" />
+                </FormGroup>
+                <ButtonGroup>
+                <Button>Submit</Button>
+                </ButtonGroup>
+             </div>
     
   )
 
@@ -81,4 +68,4 @@ class ChangePass extends Component {
 }
 
 
-export default withRouter(ChangePass);
+export default withRouter(ChangePassword);
