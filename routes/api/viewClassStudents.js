@@ -33,8 +33,6 @@ router.put('/updateGrade', (req,res) => {
   
   const { _id, CourseGrade } = req.body;
 
-  console.log(req.body)
-
   StudentTakeCourses
     .findOne({ _id })
     .then(enrollment => {

@@ -13,7 +13,7 @@ import uploadGrades from './uploadGrades';
 class CourseStudents extends Component {
     state = {
         course: {},
-        students: []
+        students: [],
     }
 
     activateEdit (student, index, off) {
@@ -133,7 +133,12 @@ class CourseStudents extends Component {
                                             <td> 
                                                 {
                                                     student.isEditMode ? 
-                                                    (<Button type="primary" onClick={() => this.saveToDb(student, i)}>Save</Button>) 
+                                                        (
+                                                            <div>
+                                                                <Button color="primary" onClick={() => this.saveToDb(student, i)}>Save</Button>
+                                                                <Button color="danger" onClick={() => this.activateEdit(student, i, true)}>x</Button>
+                                                            </div>
+                                                        ) 
                                                     :   (<Button onClick={() => this.activateEdit(student, i)}>Edit</Button>) 
                                                 }  
                                             </td>
