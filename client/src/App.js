@@ -6,7 +6,9 @@ import './App.css';
 //import ChangePass from './components/ChangePass';
 import Student from './components/Student';
 
-import CreateSchedule from './components/CreateSchedule';
+import CreateSchedule from './components/ViewSchedule';
+
+import Admin from './components/Admin';
 
 import {
   BrowserRouter as Router,
@@ -27,6 +29,8 @@ function App() {
       <Switch>  
         <Route path="/students"><Student /></Route>  
         <Route path="/create-schedule/:SemesterNumber/:SID"><CreateSchedule /></Route>
+        <Route path="/CreateSchedule/:SemesterNumber/:AdminID"><Admin /></Route>
+        <Route path="/Admin"><Admin /></Route>
       </Switch>
     </Router>
 );

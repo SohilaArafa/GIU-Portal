@@ -27,12 +27,11 @@ router.get('/CourseID/:SID', (req, res) => {
 });
 
 
-router.get('/Slot/Location/:SemesterNumber/:SID/:CourseID', (req, res) => {
+router.get('/Slot/Location/:SemesterNumber/:SID', (req, res) => {
     const SID = req.params.SID
-    const CourseID= req.params.CourseID
     const SemesterNumber = req.params.SemesterNumber
   
-    Schedule.find({ SID, SemesterNumber , CourseID })
+    Schedule.find({ SID, SemesterNumber  })
       .populate({ path: 'Course', select: 'Name' })
       .exec()
       .then(Enrollments => res.json(Enrollments))
@@ -61,6 +60,26 @@ router.post('/', (req, res) => {
     });
 
 
+
+    router.post('/CreateSchedule', (req, res) => {
+
+      const ScheduleData = req.body
+    
+      const Schedule  = new Schedule  (ScheduleData );
+      Schedule.save(function (err) {
+    
+        if (err) {
+          console.log(err);
+          return res.status(400).json({ success: false, error: err })
+        }
+    
+        res.json({ success: 'Schedule Saved', error: null })
+    
+    
+      });
+    
+    
+    })
 
 
 router.get('/students/:course', (req, res) => {

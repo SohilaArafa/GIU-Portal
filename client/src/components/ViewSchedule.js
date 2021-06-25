@@ -9,7 +9,7 @@ import {
 import { withRouter } from "react-router";
 
 
-class CreateSchedule extends Component {
+class ViewSchedule extends Component {
     state = { 
             SemseterNumber: "Winter19",
             Schedules: [ {Day: "Sunday " ,Name: "Software Engineering ", CourseID: "SE101" , Slot:"First Period" , Location: "315" }]
@@ -141,4 +141,4 @@ class CreateSchedule extends Component {
 }}
 
 
-export default withRouter(CreateSchedule);
+export default withRouter(ViewSchedule);

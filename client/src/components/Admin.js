@@ -19,20 +19,9 @@ class Admin extends Component {
         state = {
 
             AdminID: '100-1941',
-            semester: [
-                {
-                    SemesterNumber: 'Winter19' ,
-                    SID: "100-1941"
-                },
-                {
-                    SemesterNumber: 'Spring20',
-                    SID: "100-1941"
-                },
-                {
-                    SemesterNumber: 'Winter20',
-                    SID: "100-1941"
-                },
-            ]
+            Semester:[{SemesterNumber: 'Winter19' ,
+            AdminID: "100-1941"}]
+                    
         } 
 
       /*  state = { 
@@ -43,21 +32,21 @@ class Admin extends Component {
 
         componentDidMount () {
 
-            const SID = this.state.SID //localStorage.getItem('SID')
+            const AdminID = this.state.AdminID //localStorage.getItem('AdminID')
       //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
     
-            fetch("http://localhost:5000/api/viewClassStudents/courses/" + SID)
+            fetch("http://localhost:5000/api/CreateSchedule/Semester/" + AdminID)
             .then(res => res.json())
             .then(
-              (courses) => {
+              (Semester) => {
     
-                if (courses.error) {
+                if (Semester.error) {
                     alert('Error from database')
-                    console.log(courses.error)
+                    console.log(Semester.error)
                     return 
                 }
     
-                this.setState({ courses });
+                this.setState({ Semester });
     
               },
               (error) => {
@@ -72,21 +61,13 @@ class Admin extends Component {
         return (
             <Container>
                 <Row>
-                    { this.state.semester.map((semester, i) => (
+                    { this.state.Semester.map((Semester, i) => (
                             <Col xs="12" md="6" lg="4" key={i}>
                                 <Card>
                                     <CardBody>
-                                        <CardTitle tag="h5">{ semester.SemesterNumber }</CardTitle>
-                                        <Link style={{ marginRight: '1em' }} to={"/course-grade/"+semester.SemesterNumber + '/' + semester.SID} component={Button}>
-                                            View Grade 
-                                        </Link>
-                                       
-                                        <Link style={{ marginRight: '1em' }} to={"/course-details/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
-                                          View Major Courses 
-                                        </Link>
-
-                                        <Link style={{ marginRight: '1em' }} to={"/create-schedule/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
-                                          View Schedule
+                                        <CardTitle tag="h5">{ Semester.SemesterNumber }</CardTitle>
+                                        <Link style={{ marginRight: '1em' }} to={"/CreateSchedule/"+Semester.SemesterNumber + '/' + Semester.AdminID} component={Button}>
+                                            Create Schedule 
                                         </Link>
                                     </CardBody>
                                 </Card>

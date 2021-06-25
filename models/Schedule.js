@@ -30,7 +30,11 @@ const ScheduleSchema = new Schema({
     Day:{
         type: String,
         required: true
-    }
+    },
+    // ClassNumber:{
+    //      type: String,
+    //     required: true
+    // }
     
 });
 
