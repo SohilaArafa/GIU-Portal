@@ -33,6 +33,10 @@ const UsersSchema = new Schema({
     },
     token : {
         type : String
+    },
+    requiredQuestions:{
+        type: String,
+        required: true
     }
 });
 
