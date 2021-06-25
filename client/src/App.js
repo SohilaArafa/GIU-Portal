@@ -6,7 +6,7 @@ import './App.css';
 //import ChangePass from './components/ChangePass';
 import Student from './components/Student';
 
-import CreateSchedule from './components/ViewSchedule';
+import ViewSchedule from './components/ViewSchedule';
 
 import Admin from './components/Admin';
 
@@ -28,8 +28,8 @@ function App() {
 
       <Switch>  
         <Route path="/students"><Student /></Route>  
-        <Route path="/create-schedule/:SemesterNumber/:SID"><CreateSchedule /></Route>
-        <Route path="/CreateSchedule/:SemesterNumber/:AdminID"><Admin /></Route>
+        <Route path="/view-schedule/:SemesterNumber/:SID"><ViewSchedule /></Route>
+        <Route path="/create-schedule/:SemesterNumber/:AdminID"><Admin /></Route>
         <Route path="/Admin"><Admin /></Route>
       </Switch>
     </Router>
