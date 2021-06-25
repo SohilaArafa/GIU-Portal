@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
 import { Button, FormGroup, ButtonGroup, Label, } from 'reactstrap';
 import { withRouter } from 'react-router';
-import {
-  Link
-} from 'react-router-dom'
+
 
 class ChangePassword extends Component {
     state = { 
-            email: String,
+            email: "",
             users: []
         
     }
     async componentDidMount () {
-        const UserName = this.state.UserName //localStorage.getItem('CourseID')
-        fetch("http://localhost:5000/api/ChangePassword/user" + UserName)
+        const{email} = this.props.match.params //localStorage.getItem('CourseID')
+        fetch(`http://localhost:5000/api/ChangePassword/${email}`)
         .then(res => res.json())
         .then(
           (user) => {
@@ -44,25 +42,22 @@ class ChangePassword extends Component {
 
          return (
              <div>
-                <InputGroup>
-                <Input placeholder="username" />
-                <InputGroupAddon addonType="append">
-                <InputGroupText>@giu-uni.de</InputGroupText>
-                </InputGroupAddon>
-                </InputGroup>
-              <br />
+               <FormGroup>
+                <Label style={{marginLeft: '13em'}} for="Email">Email</Label>
+                <Input style={{marginLeft: '13em', maxWidth: '30%' }} type="Email" name="Email" id="exampleEmail"  />
+                </FormGroup>
+             <br />
                 <FormGroup>
-                <Label for="Password">Current Password</Label>
-                <Input type="password" name="password" id="examplePassword"  />
+                <Label style={{marginLeft: '13em' }} for="Password">Old Password</Label>
+                <Input style={{marginLeft: '13em',  maxWidth: '30%' }} type="password" name="password" id="examplePassword"  />
+                </FormGroup>
+             <br />
+                <FormGroup>
+                <Label style={{marginLeft: '13em' }} for="Password">New Password</Label>
+                <Input style={{marginLeft: '13em',  maxWidth: '30%' }} type="password" name="password" id="examplePassword"  />
                 </FormGroup>
               <br />
-                <FormGroup>
-                <Label for="Password">New Password</Label>
-                <Input type="password" name="password" id="examplePassword" />
-                </FormGroup>
-                <Link style={{ marginRight: '1em' }} to={"/Change_Password/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
-                    Submit
-                </Link>
+                <Button style={{marginLeft: '13em' }} color="primary">Submit</Button>{' '}
              </div>
     
   )

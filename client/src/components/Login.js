@@ -8,14 +8,14 @@ import {
 
 class Login extends Component {
   state = { 
-          email: String,
+          email: "",
           users: []
       
   }
 
 async componentDidMount () {
-  const UserName = this.state.UserName //localStorage.getItem('Email')
-  fetch("http://localhost:5000/api/login/" + UserName)
+  const email = this.props.match.params//localStorage.getItem('Email')
+  fetch(`http://localhost:5000/api/Login/${email}`)
   .then(res => res.json())
   .then(
     (users) => {
@@ -46,20 +46,19 @@ async componentDidMount () {
 
         return (
             <div>
-                <InputGroup>
-                <Input placeholder="username" />
-                <InputGroupAddon addonType="append">
-                <InputGroupText>@giu-uni.de</InputGroupText>
-                </InputGroupAddon>
-                </InputGroup>
+                <FormGroup>
+                <Label style={{marginLeft: '13em'}} for="Email">Email</Label>
+                <Input style={{marginLeft: '13em', maxWidth: '30%' }} type="Email" name="Email" id="exampleEmail"  />
+                </FormGroup>
              <br />
                 <FormGroup>
-                <Label for="Password">Password</Label>
-                <Input type="password" name="password" id="examplePassword"  />
+                <Label style={{marginLeft: '13em' }} for="Password">Password</Label>
+                <Input style={{marginLeft: '13em',  maxWidth: '30%' }} type="password" name="password" id="examplePassword"  />
                 </FormGroup>
-                <Link style={{ marginRight: '1em' }} to={"/Login/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
+              <br />
+               {/* <Link style={{ marginRight: '1em' }} to={"/Login/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
                     Submit
-                </Link>
+                </Link> */}
             </div>
   )
 }

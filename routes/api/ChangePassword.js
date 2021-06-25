@@ -9,47 +9,42 @@ const password = require('../../models/User');
 const { update } = require('../../models/User');
 
 
-// router.update('/email', (req, res) => {
-//   const _id = req.params.id
-//   StudentTakeCourses
-//     .deleteOne({ _id })
-//     .then(update => res.json(update))
-//     .catch(err => res.status(400).json(err))
-// });
+// router.get('/password/:email', (req, res) => {
 
-router.get('/password/:email', (req, res) => {
-
-    const email = req.params.email
-    Users.find({ email })
-      .exec()
-      .catch(err => res.status(400).json({ success: false, error: err }))
+  //   const email = req.params.email
+  //   Users.find({ email })
+  //     .exec()
+  //     .catch(err => res.status(400).json({ success: false, error: err }))
    
-  });
+  // });
 
-  router.post('/user', (req, res) => {
+// router.post('/user', (req, res) => {
 
-    const userData = req.body
+//     const userData = req.body
   
-    const user = new User(userData);
-    user.save(function (err) {
+//     const user = new User(userData);
+//     user.save(function (err) {
   
-      if (err) {
-        console.log(err);
-        return res.status(400).json({ success: false, error: err })
-      }
+//       if (err) {
+//         console.log(err);
+//         return res.status(400).json({ success: false, error: err })
+//       }
   
-      res.json({ success: 'User data Saved', error: null })
-    }
+//       res.json({ success: 'User data Saved', error: null })
+//     }
   
-    )
-  });
+//     )
+//   });
+
+
+
   router.put('/updatePassword/:email', (req,res) =>{
     const newPassword= req.body.newPassword;
-    const email= req.body.email;
+    const password = req.body.password;
     
-      users.find({email})
+      User.findOne({email})
           .then(passwordToUpdate =>{
-          passwordToUpdate.password=newPassword;
+          passwordToUpdate.password = newPassword;
           passwordToUpdate.save()})
     
          if (err) {
@@ -61,16 +56,31 @@ router.get('/password/:email', (req, res) => {
         
       });
 
-// @route   POST api/changepass
-// @desc    Create an Item
-// @access  Public
-// router.post('/', (req, res) => {
-//   const oldPass = new User({
-//     name: req.body.name
-//   });
-  
-//   oldPass.save().then(user => res.json(user));
-// });
+
+
+router.post('/login' , (req,res) => {
+  const { email } = req.body.email;
+  const { password } = req.body.password;
+  User.findOne({ email } & { password })
+  .then(user ) ;
+
+   if (err) {
+    console.log(err);
+    return res.status(400).json({ success: false, error: err })
+  }
+
+  res.json({ success: 'password Updated', error: null })
+})
+
+
+
+
+
+
+
+
+
+
 
 
  module.exports = router ;
