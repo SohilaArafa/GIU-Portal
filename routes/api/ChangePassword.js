@@ -60,6 +60,7 @@ const passport = require('passport');
 router.post('/login',
   passport.authenticate('local'),
   function(req, res) {
+    delete  req.user.password
     res.json(req.user);
   });
 

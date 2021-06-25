@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
-import { Button, FormGroup, ButtonGroup, Label } from 'reactstrap';
+import { Button, FormGroup,  Label, Input } from 'reactstrap';
 import { withRouter } from 'react-router';
-import {
-  Link
-} from 'react-router-dom'
+
 
 class Login extends Component {
   state = { 
@@ -35,9 +32,18 @@ class Login extends Component {
       },
       body: JSON.stringify({ email, password }) 
     })
-    .then(res => res.json())
+    .then(res => res.json()) 
     .then(
       (user) => {
+
+        console.log(user)
+        localStorage.setItem('user', JSON.stringify(user))
+
+        if(user.profile == 'student') {
+          this.props.history.push('/students')
+        } else if (user.profile == 'ta'){
+          this.props.history.push('/ta')
+        } 
 
         if (user.error) {
             alert('Error from database')
@@ -74,7 +80,7 @@ class Login extends Component {
                 <Input style={{marginLeft: '13em',  maxWidth: '30%' }} value={this.state.password} onChange={(e) => this.updateState('password', e.target.value)} type="password" name="password" id="examplePassword"  />
                 </FormGroup>
               <br />
-               {<Button style={{ marginRight: '1em' }} onClick={() => this.login()} >
+               {<Button color="primary" style={{ marginLeft: '13em' }} onClick={() => this.login()} >
                     Submit
                 </Button>}
             </div>

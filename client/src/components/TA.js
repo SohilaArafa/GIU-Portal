@@ -70,7 +70,7 @@ class TA extends Component {
                                         <CardTitle tag="h5">{ course.Name }</CardTitle>
                                         <CardSubtitle tag="h6" className="mb-2 text-muted">
                                             { course.CourseID }</CardSubtitle>
-                                        <Link to={"/course-students/"+course.CourseID} component={Button}>
+                                        <Link color="info" to={"/course-students/"+course.CourseID} component={Button}>
                                             View Students
                                         </Link>
 

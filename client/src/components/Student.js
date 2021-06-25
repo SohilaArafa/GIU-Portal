@@ -76,13 +76,16 @@ class Student extends Component {
                             <Col xs="12" md="6" lg="4" key={i}>
                                 <Card>
                                     <CardBody>
+
                                         <CardTitle tag="h5">{ semester.SemesterNumber }</CardTitle>
-                                        <Link style={{ marginRight: '1em' }} to={"/course-grade/"+semester.SemesterNumber + '/' + semester.SID} component={Button}>
+                                        <Link color="info" style={{ marginRight: '1em' }} to={"/course-grade/"+semester.SemesterNumber + '/' + semester.SID} component={Button}>
                                             View Grade 
                                         </Link>
-                                        <Button>View Info</Button>
+                                        <Button color="info" >View Info</Button>
                                     </CardBody>
+                                    
                                 </Card>
+                                <tb />
                             </Col>
                         ))
                     }
