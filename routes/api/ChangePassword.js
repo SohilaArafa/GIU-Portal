@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const password = require('../../models/User');
 const { update } = require('../../models/User');
 
-
+const passport = require('passport');
 // router.get('/password/:email', (req, res) => {
 
   //   const email = req.params.email
@@ -57,20 +57,31 @@ const { update } = require('../../models/User');
       });
 
 
+router.post('/login',
+  passport.authenticate('local'),
+  function(req, res) {
+    res.json(req.user);
+  });
 
-router.post('/login' , (req,res) => {
-  const { email } = req.body.email;
-  const { password } = req.body.password;
-  User.findOne({ email } & { password })
-  .then(user ) ;
+// router.post('/login' , (req,res) => {
+//   const { email, password  } = req.body;
 
-   if (err) {
-    console.log(err);
-    return res.status(400).json({ success: false, error: err })
-  }
+//   User.findOne({ email })
+//   .then(user => {
 
-  res.json({ success: 'password Updated', error: null })
-})
+//         if(email == User.email && password == User.password){
+            
+
+//         } 
+
+//       if (err) {
+//           console.log(err);
+//           return res.status(400).json({ success: false, error: err })
+//         }
+        
+//         res.json({ success: 'password Updated', error: null })
+//     }) ;
+// })
 
 
 
