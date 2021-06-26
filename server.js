@@ -21,7 +21,8 @@ var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
 app.use(express.static("public"));
-app.use(session({ secret: "cats" }));
+app.use(cors());
+app.use(session({ secret: "cats", resave:false, saveUninitialized: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -29,7 +30,6 @@ app.use(passport.session());
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
-app.use(cors());
 
 // db config
 const db = require('./config/keys').mongoURI;
