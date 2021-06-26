@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 
 import { withRouter } from "react-router";
-import uploadGrades from './uploadGrades';
+//import uploadGrades from './uploadGrades';
 
 class CourseStudents extends Component {
     state = {
@@ -21,6 +21,8 @@ class CourseStudents extends Component {
         const students = this.state.students
         
         student.isEditMode = off ? false : true
+        student.tempGrade = student.CourseGrade.$numberDecimal
+       // student.isEditMode = true ? this.setState({temp}) : 
         students.splice(index, 1, student)
 
         this.setState({ students })
@@ -29,7 +31,10 @@ class CourseStudents extends Component {
 
     saveToDb (student, index) {
 
+        student.CourseGrade.$numberDecimal = student.tempGrade
         this.activateEdit(student, index, true)
+
+        console.log('getting stuff')
 
         fetch('http://localhost:5000/api/viewClassStudents/updateGrade', {
             method: 'PUT', 
@@ -38,21 +43,25 @@ class CourseStudents extends Component {
         })
         .then(res => res.json())
         .then(res => {
+
             if (res.error)  {
-                console.log(res)
                 alert(res.error.message)
                 return 
             }
+
             return alert(res.success)
-        }).catch(console.log)
+            
+        }).catch(e => console.log(e))
         
     }
 
     updateGrade (student, index, event) {
 
+       // const temp = this.input.value
         const students = this.state.students
         
-        student.CourseGrade.$numberDecimal = event.target.value
+        // student.CourseGrade.$numberDecimal = event.target.value
+        student.tempGrade = event.target.value
         students.splice(index, 1, student)
 
         this.setState({ students })
@@ -69,8 +78,6 @@ class CourseStudents extends Component {
           (data) => {
 
             const { students, course } = data
-
-            console.log(data)
 
             if (data.error) {
                 alert('Error from database')
@@ -114,6 +121,7 @@ class CourseStudents extends Component {
                                     <th>Name</th>
                                     <th>Semester</th>
                                     <th>Grade</th>
+                                    <th> &nbsp; </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -123,19 +131,19 @@ class CourseStudents extends Component {
                                             <th scope="row">{ student.SID }</th>
                                             <td>{ `${student.Student.fname} ${student.Student.lname}`  }</td>
                                             <td>{ student.SemesterNumber }</td>
-                                            <td>
+                                            <td style={{ width: '100px', maxWidth: '100px' }}>
                                                 {
-                                                    student.isEditMode ? 
-                                                       (<input type="number" value={ student.CourseGrade.$numberDecimal } onChange={ e => this.updateGrade(student, i, e) } />)
+                                                    student.isEditMode ?  //student.temp - CourseGrade.$numberDecimal
+                                                       (<input type="number" style={{ maxWidth: '100%' }} value={ student.tempGrade } onChange={ e => this.updateGrade(student, i, e) } />)
                                                     :  <span>{ student.CourseGrade.$numberDecimal }</span>
                                                 }
                                             </td>
-                                            <td> 
+                                            <td style={{ width: '150px' }}> 
                                                 {
                                                     student.isEditMode ? 
                                                         (
                                                             <div>
-                                                                <Button color="primary" onClick={() => this.saveToDb(student, i)}>Save</Button>
+                                                                <Button color="success" onClick={() => this.saveToDb(student, i)}>Save</Button>
                                                                 <Button color="danger" onClick={() => this.activateEdit(student, i, true)}>x</Button>
                                                             </div>
                                                         ) 

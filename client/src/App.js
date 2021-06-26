@@ -7,6 +7,7 @@ import './App.css';
 import Student from './components/Student';
 import CourseGrades from './components/CourseGrades';
 import CourseDetails from './components/CourseDetails';
+import Apply from './components/Apply';
 
 import {
   BrowserRouter as Router,
@@ -33,6 +34,7 @@ function App() {
         <Route path="/course-grade/:SemesterNumber/:SID"><CourseGrades /></Route>
         <Route path="/course-details/:SemesterNumber/:CourseMajor/:SID"><CourseDetails /></Route>
         <Route path="/upload-grade/:CourseID/:SID"><UploadGrades /></Route>
+        <Route path="/student-apply"><Apply /></Route>
       </Switch>
     </Router>
 );

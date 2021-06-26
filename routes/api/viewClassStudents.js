@@ -38,9 +38,10 @@ router.put('/updateGrade', (req,res) => {
     .then(enrollment => {
       
       enrollment.CourseGrade = CourseGrade.$numberDecimal
+    
       enrollment
         .save()
-        .then({ success: 'Grade Updated', error: null })
+        .then(response => res.json({ success: 'Grade Updated', error: null }))
         .catch(err => res.status(400).json({ success: false, error: err }))
 
     })

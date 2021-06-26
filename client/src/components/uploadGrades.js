@@ -9,29 +9,6 @@ import {
 
 import { withRouter } from "react-router";
 
-function editData(e) {
-  const el = e.target;
-  const input = document.createElement("input");
-  input.setAttribute("value", el.value);
-  el.replaceWith(input);
-
-  const save = function() {
-    const previous = document.createElement(el.tagName.toLowerCase());
-    previous.onclick = editData;
-    previous.textContent = input.value;
-    input.replaceWith(previous);
-  };
-
-  input.addEventListener('blur', save, {
-    once: true,
-  });
-  input.focus();
-}
-
-for (const child of document.querySelectorAll('[data-editable]')) {
-  child.onclick = editData;
-}
-
 
 class uploadGrades extends Component {
     state = {
