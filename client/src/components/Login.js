@@ -1,62 +1,88 @@
 import React, { Component } from 'react';
-import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
-import { Button, FormGroup, ButtonGroup, Label } from 'reactstrap';
+import { Button, FormGroup,  Label, Input } from 'reactstrap';
 import { withRouter } from 'react-router';
+
 
 class Login extends Component {
   state = { 
-          email: String,
-          users: []
-      
+      email: "",
+      password: ""
   }
 
-async componentDidMount () {
-  const UserName = this.state.UserName //localStorage.getItem('Email')
-  fetch("http://localhost:5000/api/login/" + UserName)
-  .then(res => res.json())
-  .then(
-    (users) => {
 
-      if (users.error) {
-          alert('Error from database')
-          console.log(users.error)
-          return 
-      }
+  updateState (key, value) {
+
+    const newState = this.state
+    newState[key] = value
+
+    this.setState({ ...newState })
+
+  }
+
+  login () {
+
+    
+    const { email, password } = this.state
 
 
-      console.log(users)
-      this.setState({ users });
-
-    },
-    (error) => {
-      
-      alert('Error fetching data')
-      console.log(error)
-      
+    fetch(`http://localhost:5000/api/changepass/login/`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password }) 
     })
+    .then(res => res.json()) 
+    .then(
+      (user) => {
+
+        console.log(user)
+        localStorage.setItem('user', JSON.stringify(user))
+
+        if(user.profile == 'student') {
+          this.props.history.push('/students')
+        } else if (user.profile == 'ta'){
+          this.props.history.push('/ta')
+        } 
+
+        if (user.error) {
+            alert('Error from database')
+            console.log(user.error)
+            return 
+        }
 
 
-}
+        console.log(user)
+        // this.setState({ users });
+
+      },
+      (error) => {
+        
+        alert('Error fetching data')
+        console.log(error)
+        
+      })
+
+  }
         
      render()
     {
 
         return (
             <div>
-                <InputGroup>
-                <Input placeholder="username" />
-                <InputGroupAddon addonType="append">
-                <InputGroupText>@giu-uni.de</InputGroupText>
-                </InputGroupAddon>
-                </InputGroup>
+                <FormGroup>
+                <Label style={{marginLeft: '13em'}} for="Email">Email</Label>
+                <Input style={{marginLeft: '13em', maxWidth: '30%' }} value={this.state.email} onChange={(e) => this.updateState('email', e.target.value)} type="Email" name="Email" id="exampleEmail"  />
+                </FormGroup>
              <br />
                 <FormGroup>
-                <Label for="Password">Password</Label>
-                <Input type="password" name="password" id="examplePassword"  />
+                <Label style={{marginLeft: '13em' }} for="Password">Password</Label>
+                <Input style={{marginLeft: '13em',  maxWidth: '30%' }} value={this.state.password} onChange={(e) => this.updateState('password', e.target.value)} type="password" name="password" id="examplePassword"  />
                 </FormGroup>
-                <ButtonGroup>
-                <Button>Submit</Button>
-                </ButtonGroup>
+              <br />
+               {<Button color="primary" style={{ marginLeft: '13em' }} onClick={() => this.login()} >
+                    Submit
+                </Button>}
             </div>
   )
 }
@@ -64,4 +90,3 @@ async componentDidMount () {
 }
 
 export default withRouter(Login);
-

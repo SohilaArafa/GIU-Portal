@@ -1,29 +1,48 @@
 import React, { Component } from 'react';
-import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
-import { Button, FormGroup, ButtonGroup, Label, } from 'reactstrap';
+import { Button, FormGroup, Label, Input} from 'reactstrap';
 import { withRouter } from 'react-router';
+
 
 class ChangePassword extends Component {
     state = { 
-            email: String,
-            users: []
-        
+        oldPassword: "",
+        newPassword: "" 
     }
-    async componentDidMount () {
-        const UserName = this.state.UserName //localStorage.getItem('CourseID')
-        fetch("http://localhost:5000/api/changepass/user" + UserName)
+
+    updateState (key, value) {
+
+      const newState = this.state
+      newState[key] = value
+  
+      this.setState({ ...newState })
+  
+    }
+
+    async changePass () {
+
+       const user = JSON.parse(localStorage.getItem('user'))
+       const { email } = user
+
+       const { oldPassword, newPassword } = this.state
+        // const{email} = this.props.match.params //localStorage.getItem('CourseID')
+        fetch(`http://localhost:5000/api/changepass/updatePassword`,{
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, oldPassword, newPassword }) 
+        })
         .then(res => res.json())
         .then(
           (user) => {
 
             if (user.error) {
-                alert('Error from database')
-                console.log(user.error)
+                alert(JSON.stringify(user.error))
                 return 
             }
 
 
-            console.log(user)
+            alert('Password Changed Successfully')
             this.setState({ user });
 
           },
@@ -41,25 +60,17 @@ class ChangePassword extends Component {
 
          return (
              <div>
-                <InputGroup>
-                <Input placeholder="username" />
-                <InputGroupAddon addonType="append">
-                <InputGroupText>@giu-uni.de</InputGroupText>
-                </InputGroupAddon>
-                </InputGroup>
-              <br />
                 <FormGroup>
-                <Label for="Password">Current Password</Label>
-                <Input type="password" name="password" id="examplePassword"  />
+                <Label style={{marginLeft: '13em' }} for="Password">Old Password</Label>
+                <Input style={{marginLeft: '13em',  maxWidth: '30%' }} value={this.state.oldPassword} onChange={(e) => this.updateState('oldPassword', e.target.value)}  type="password" name="password" id="examplePassword"  />
+                </FormGroup>
+             <br />
+                <FormGroup>
+                <Label style={{marginLeft: '13em' }} for="Password">New Password</Label>
+                <Input style={{marginLeft: '13em',  maxWidth: '30%' }} value={this.state.newPassword} onChange={(e) => this.updateState('newPassword', e.target.value)}  type="password" name="password" id="examplePassword"  />
                 </FormGroup>
               <br />
-                <FormGroup>
-                <Label for="Password">New Password</Label>
-                <Input type="password" name="password" id="examplePassword" />
-                </FormGroup>
-                <ButtonGroup>
-                <Button>Submit</Button>
-                </ButtonGroup>
+                <Button style={{marginLeft: '13em' }} color="primary" onClick={() => this.changePass()}>Submit</Button>{' '}
              </div>
     
   )

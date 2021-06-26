@@ -9,6 +9,7 @@ import Student from './components/Student';
 import ViewSchedule from './components/ViewSchedule';
 
 import Admin from './components/Admin';
+import AddCourses from './components/AddCourses';
 
 import {
   BrowserRouter as Router,
@@ -31,6 +32,9 @@ function App() {
         <Route path="/view-schedule/:SemesterNumber/:SID"><ViewSchedule /></Route>
         <Route path="/create-schedule/:SemesterNumber/:AdminID"><Admin /></Route>
         <Route path="/Admin"><Admin /></Route>
+        <Route path="/add-Courses"><AddCourses /></Route>
+        {/* <Route path="/change-password"><ChangePassword /></Route>
+        <Route path="/login"><Login /></Route>   */}
       </Switch>
     </Router>
 );

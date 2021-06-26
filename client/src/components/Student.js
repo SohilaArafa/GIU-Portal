@@ -84,10 +84,6 @@ class Student extends Component {
                                         <Link style={{ marginRight: '1em' }} to={"/course-details/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
                                           View Major Courses 
                                         </Link>
-
-                                        <Link style={{ marginRight: '1em' }} to={"/create-schedule/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
-                                          View Schedule
-                                        </Link>
                                     </CardBody>
                                 </Card>
                             </Col>

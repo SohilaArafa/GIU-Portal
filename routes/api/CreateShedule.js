@@ -43,12 +43,38 @@ router.post('/CreateSchedule', (req, res) => {
     
     })
 
+//create schedue Wally
+router.post('/CreateSchedule', (req, res) =>{
+  console.log(req.body) ;
 
+  Schedule.create({
+     AdminID : req.body.AdminID,
+     SID : req.body.SID,
+     CourseID: req.body.CourseID,
+     SemesterNumber: req.body.SemesterNumber,
+     Location: req.body.Location,
+     Slot: req.body.Slot,
+     Day:  req.body.Day
+
+ });
+
+ res.json('Data uploaded');
+ 
+})
 
 
 
 
 
 module.exports = router;
+
+
+
+
+
+
+  
+
+
 
 

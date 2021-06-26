@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const CoursesSchema = new Schema({
-    Name:{
+    CourseName:{
         type: String,
         required: true
     },
@@ -17,6 +17,14 @@ const CoursesSchema = new Schema({
     },
     studensEnrolled: {
         type: { type: mongoose.Types.ObjectId, ref: 'StudentTakeCourses' }, 
+    },
+    CourseDetails : {
+        type : String ,
+        required: true
+    },
+    CourseMajor : {
+        type : Stirng ,
+        required: true
     }
 });
 
