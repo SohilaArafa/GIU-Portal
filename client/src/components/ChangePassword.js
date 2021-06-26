@@ -20,24 +20,24 @@ class ChangePassword extends Component {
 
     async changePass () {
 
+       const user = JSON.parse(localStorage.getItem('user'))
+       const { email } = user
 
        const { oldPassword, newPassword } = this.state
         // const{email} = this.props.match.params //localStorage.getItem('CourseID')
         fetch(`http://localhost:5000/api/changepass/updatePassword`,{
-          credentials: 'include',
           method: "PUT",
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ oldPassword, newPassword }) 
+          body: JSON.stringify({ email, oldPassword, newPassword }) 
         })
         .then(res => res.json())
         .then(
           (user) => {
 
             if (user.error) {
-                alert('Error from database')
-                console.log(user.error)
+                alert(JSON.stringify(user.error))
                 return 
             }
 

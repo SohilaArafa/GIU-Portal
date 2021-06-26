@@ -4,6 +4,13 @@ const bodyParser = require('body-parser');
 const User = require('./models/User');
 const ChangePassword = require('./routes/api/ChangePassword.js');
 
+const cookieParser = require('cookie-parser')
+const session = require("express-session")
+
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
+
 // Add path to story using constant
 const cors = require('cors')
 const Login = require('./routes/api/Login.js');
@@ -13,32 +20,6 @@ const items = require('./routes/api/items.js');
 const viewClassStudents = require('./routes/api/viewClassStudents.js');
 
 const app = express();
-
-
-
-var session = require("express-session")
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
-
-app.use(express.static("public"));
-app.use(cors());
-app.use(session({ secret: "cats", resave:false, saveUninitialized: true }));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-// Bodyparser Middleware
-app.use(bodyParser.json());
-
-// db config
-const db = require('./config/keys').mongoURI;
-
-//connect to mongo
-mongoose
-  .connect(db)
-  .then(() => console.log('MongoDB Connected..'))
-  .catch(err => console.log(err));
 
 
 
@@ -64,11 +45,43 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser(function(user, done) {
+  User.findById(user, function(err, user) {
+    console.log('deserialize user', err, user)
     done(err, user);
   });
 });
+
+
+// db config
+const db = require('./config/keys').mongoURI;
+
+//connect to mongo
+mongoose
+  .connect(db)
+  .then(() => console.log('MongoDB Connected..'))
+  .catch(err => console.log(err));
+
+
+app.use(cors({ credentials: true }));
+app.use(cookieParser());
+
+
+app.use(session({ 
+  cookie: { maxAge: 31536600 },
+  secret: "cats", 
+  resave: true, 
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.static("public"));
+
+// Bodyparser Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 
 // User Routes
