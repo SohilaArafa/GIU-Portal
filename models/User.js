@@ -33,7 +33,6 @@ const UsersSchema = new Schema({
     },
     requiredQuestions:{
         type: String,
-        required: true
     },
     faculty:{
         type: String,

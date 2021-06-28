@@ -57,7 +57,6 @@ class CourseStudents extends Component {
 
     updateGrade (student, index, event) {
 
-       // const temp = this.input.value
         const students = this.state.students
         
         // student.CourseGrade.$numberDecimal = event.target.value
@@ -133,7 +132,7 @@ class CourseStudents extends Component {
                                             <td>{ student.SemesterNumber }</td>
                                             <td style={{ width: '100px', maxWidth: '100px' }}>
                                                 {
-                                                    student.isEditMode ?  //student.temp - CourseGrade.$numberDecimal
+                                                    student.isEditMode ?  
                                                        (<input type="number" style={{ maxWidth: '100%' }} value={ student.tempGrade } onChange={ e => this.updateGrade(student, i, e) } />)
                                                     :  <span>{ student.CourseGrade.$numberDecimal }</span>
                                                 }
