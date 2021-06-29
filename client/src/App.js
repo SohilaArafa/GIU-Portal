@@ -7,7 +7,8 @@ import Student from './components/Student';
 import CourseGrades from './components/CourseGrades';
 import CourseDetails from './components/CourseDetails';
 import Apply from './components/Apply';
-import Schedule from './components/Schedule';
+import ViewSchedule from './components/ViewSchedule';
+import CreateSchedule from './components/CreateSchedule';
 import Admin from './components/Admin';
 import EditCourses from './components/EditCourses';
 import ChangePassword from './components/ChangePassword';
@@ -15,7 +16,6 @@ import Login from './components/Login';
 import AddCourse from './components/AddCourse';
 import Update from './components/Update';
 import CourseStudents from './components/CourseStudents';
-import UploadGrades from './components/uploadGrades';
 
 import {
   BrowserRouter as Router,
@@ -36,10 +36,9 @@ function App() {
         <Route path="/students"><Student /></Route>
         <Route path="/course-grade/:SemesterNumber/:SID"><CourseGrades /></Route>
         <Route path="/course-details/:SemesterNumber/:CourseMajor/:SID"><CourseDetails /></Route>
-        <Route path="/upload-grade/:CourseID/:SID"><UploadGrades /></Route>
         <Route path="/apply"><Apply /></Route>
-        <Route path="/create-schedule"><Schedule /></Route>
-        <Route path="/view-schedule/:SemesterNumber/:SID"><Schedule /></Route>
+        <Route path="/create-schedule"><CreateSchedule /></Route>
+        <Route path="/view-schedule/:SemesterNumber/:SID"><ViewSchedule /></Route>
         <Route path="/Admin"><Admin /></Route>
         <Route path="/edit-courses"><EditCourses /></Route>
         <Route path="/change-password"><ChangePassword /></Route>

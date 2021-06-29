@@ -57,16 +57,17 @@ class EditCourses extends Component {
                    <Label style={{marginLeft: '13em' }} for="AddCourse">Course Name</Label>
                    <Input style={{marginLeft: '13em',  maxWidth: '30%' }} value={this.state.CourseName} onChange={(e) => this.updateState('CourseName', e.target.value)}  type="CourseName" name="CourseName" id="CourseName"  />
                    </FormGroup>
+                   <p></p>
                    <ButtonGroup>
-                   <Link style={{ marginRight: '1em' }} to={"/add/"} component={Button}>
+                   <Link style={{ marginLeft: '13em' }} to={"/add-course"} component={Button}>
                         Add Course
                     </Link>
                    <br />
-                   <Link style={{ marginRight: '1em' }} to={"/update/"} component={Button}>
+                   <Link style={{ marginLeft: '1em' }} to={"/update"} component={Button}>
                         Update Course 
                     </Link>
                    <br />
-                   <Link style={{ marginRight: '1em' }} to={"/delete/"} component={Button}>
+                   <Link style={{ marginLeft: '1em' }} to={"/delete"} component={Button}>
                         Delete Course 
                     </Link>
                    </ButtonGroup>               

@@ -7,9 +7,9 @@ const cors = require('cors')
 // Add path to story using constant
 const items = require('./routes/api/items.js');
 const viewClassStudents = require('./routes/api/viewClassStudents.js');
-// const items = require('./routes/api/items.js');
-// const ChangePassword = require('./routes/api/ChangePassword.js');
-const users = require('./routes/api/users.js');
+const Schedule = require('./routes/api/Schedule.js');
+const UpdateCourses = require('./routes/api/UpdateCourses.js');
+
 
 const app = express();
 
@@ -30,9 +30,11 @@ mongoose
 // Listen for your user story and link to constant created above
 app.use('/api/items', items)
 app.use('/api/viewClassStudents', viewClassStudents)
-//app.use('/api/items', items);
-//app.use('.routes/api/changepass', ChangePassword);
-app.use('/api/users', users);
+app.use('/api/UpdateCourses', UpdateCourses)
+app.use('/api/Schedule', Schedule)
+
+
+
 
 const port = process.env.PORT || 5000;
 

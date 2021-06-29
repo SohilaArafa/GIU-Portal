@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const Course = require('../../models/Course');
 const User = require('../../models/User');
 const StudentTakeCourses = require('../../models/StudentTakeCourses');
-const Schedule = require('../../models/Schedule');
 const { Router } = require('express');
 
 // @route   POST api/viewClassStudents
@@ -105,26 +104,6 @@ router.get('/CourseDetails/:CourseID/:SemesterNumber:/CourseMajor:/SID', (req, r
 });
 
 
-//creating a new course
-router.post('/course', (req, res) => {
-
-  const courseData = req.body
-
-  const course = new Course(courseData);
-  course.save(function (err) {
-
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ success: false, error: err })
-    }
-
-    res.json({ success: 'Course Saved', error: null })
-
-
-  });
-
-
-})
 
 //creating a new user
 router.post('/user', (req, res) => {
@@ -167,25 +146,6 @@ router.post('/', (req, res) => {
    });
 })
 
-//create schedule
-router.post('/schedule', (req, res) => {
-
-  const scheduleData = req.body
-
-  const schedule = new Schedule(scheduleData);
-  schedule.save(function (err) {
-
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ success: false, error: err })
-    }
-
-    res.json({ success: 'Schedule Saved', error: null })
-
-
-  });
-
-})
 
 //deleting from student enrollments
 router.delete('/:id', (req, res) => {

@@ -3,7 +3,6 @@ import {
     Card,
     CardBody,
     CardTitle,
-    CardSubtitle,
     Container,
     Row,
     Col,
@@ -24,18 +23,13 @@ class Admin extends Component {
                     
         } 
 
-      /*  state = { 
-            SID : '1002329' ,
-            SemesterNumber : []
-        
-        }*/
 
         componentDidMount () {
 
             const AdminID = this.state.AdminID //localStorage.getItem('AdminID')
       //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
     
-            fetch("http://localhost:5000/api/CreateSchedule/Semester/" + AdminID)
+            fetch("http://localhost:5000/api/Schedule/Semester/" + AdminID)
             .then(res => res.json())
             .then(
               (Semester) => {
@@ -66,10 +60,10 @@ class Admin extends Component {
                                 <Card>
                                     <CardBody>
                                         <CardTitle tag="h5">{ Semester.SemesterNumber }</CardTitle>
-                                        <Link style={{ marginRight: '1em' }} to={"/CreateSchedule/"+Semester.SemesterNumber + '/' + Semester.AdminID} component={Button}>
+                                        <Link style={{ marginRight: '1em' }} to={"/create-schedule/"+Semester.SemesterNumber + '/' + Semester.AdminID} component={Button}>
                                             Create Schedule 
                                         </Link>
-                                        <Link style={{ marginRight: '1em' }} to={"/add-courses/"} component={Button}>
+                                        <Link style={{ marginRight: '1em' }} to={"/edit-courses"} component={Button}>
                                             Update Course 
                                         </Link>
                                     </CardBody>
