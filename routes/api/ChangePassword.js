@@ -41,52 +41,42 @@ const cors = require('cors');
 
   router.put('/updatePassword', cors(), (req, res) =>{
 
-    const user = req.user
-    console.log(user)
-
-    if (!user) return res.json({ success: false, error: 'You must be logged in to change password' })
-
-    const newPassword= req.body.newPassword;
+    const email = req.body.email
+    const newPassword = req.body.newPassword;
     const password = req.body.oldPassword;
 
-    console.log(user)
-    console.log(password, newPassword)
-
-    if (password == user.password) {
-
-      user.password = newPassword
-      user
-        .save()
-        .then(response => res.json({ success: 'password changed successfully' , error: null }))     
-        .catch(err => res.json({ success: false, error: err }))
-
-
-    } else {
-
-      res.json({ success: false, error: 'Passwords don\'t match' })
     
-    }
+    User
+      .findOne({ email })
+      .then(user => {
+
+        if (password == user.password) {
+
+          user.password = newPassword
+          user
+            .save()
+            .then(_ => res.json({ success: 'password changed successfully' , error: null }))     
+            .catch(err => res.json({ success: false, error: err }))
     
-      // User.findOne({ email: user.email })
-      //     .then(passwordToUpdate =>{
-      //     passwordToUpdate.password = newPassword;
-      //     passwordToUpdate.save()})
     
-      //    if (err) {
-      //     console.log(err);
-      //     return res.status(400).json({ success: false, error: err })
-      //   }
+        } else {
     
-      //   res.json({ success: 'password Updated', error: null })
+          res.json({ success: false, error: 'Passwords don\'t match' })
         
+        }
+        
+
+      }).catch(err => res.json({ success: false, error: err }))
+
+
   });
 
 
 router.post('/login',
   passport.authenticate('local'),
   function(req, res) {
-    delete  req.user.password
-    res.json(req.user);
+    const { fname, lname, dob, profile, email, id, _id } = req.user
+    res.json({ fname, lname, dob, profile, email, id, _id });
   });
 
 // router.post('/login' , (req,res) => {
