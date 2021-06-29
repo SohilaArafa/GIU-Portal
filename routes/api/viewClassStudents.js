@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const Course = require('../../models/Course');
 const User = require('../../models/User');
 const StudentTakeCourses = require('../../models/StudentTakeCourses');
+const Schedule = require('../../models/Schedule');
 const { Router } = require('express');
 
 // @route   POST api/viewClassStudents
@@ -164,6 +165,26 @@ router.post('/', (req, res) => {
 
 
    });
+})
+
+//create schedule
+router.post('/schedule', (req, res) => {
+
+  const scheduleData = req.body
+
+  const schedule = new Schedule(scheduleData);
+  schedule.save(function (err) {
+
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ success: false, error: err })
+    }
+
+    res.json({ success: 'Schedule Saved', error: null })
+
+
+  });
+
 })
 
 //deleting from student enrollments
