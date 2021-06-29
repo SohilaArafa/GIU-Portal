@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom'
 
 
-class AddCourses extends Component {
+class EditCourses extends Component {
    
         state = {
 
@@ -76,4 +76,4 @@ class AddCourses extends Component {
 
 } 
 
-export default AddCourses;
+export default EditCourses;

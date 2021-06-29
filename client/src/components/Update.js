@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
 import {
-    Card,
-    CardBody,
-    CardTitle,
-    CardSubtitle,
-    Container,
-    Row,
-    Col,
     Label,
     FormGroup,
     Input,
     Button
 } from 'reactstrap';
-import {
-    Link
-} from 'react-router-dom'
 
 
 class Update extends Component {
@@ -22,8 +12,8 @@ class Update extends Component {
         state = {
 
             CourseName: null,
-            CourseID= null,
-            CourseDetails=null
+            CourseID: null,
+            CourseDetails: null
         } 
 
       

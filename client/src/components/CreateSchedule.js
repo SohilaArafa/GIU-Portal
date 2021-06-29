@@ -21,7 +21,7 @@ class CreateSchedule extends Component {
 
     saveToDb () {
 
-        fetch('http://localhost:5000/api/viewClassStudents/schedule', {
+        fetch('http://localhost:5000/api/CreateSchedule/schedule', {
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(this.state) 

@@ -20,8 +20,7 @@ const CoursesSchema = new Schema({
         required: true
     },
     CourseMajor : {
-        type : Stirng ,
-        required: true
+        type : String ,
     },
     studensEnrolled: {
         type: { type: mongoose.Types.ObjectId, ref: 'StudentTakeCourses' }, 

@@ -12,19 +12,16 @@ import {
     Input,
     Button
 } from 'reactstrap';
-import {
-    Link
-} from 'react-router-dom'
 
 
-class Add extends Component {
+class AddCourse extends Component {
    
         state = {
 
             CourseName: null,
-            CourseID= null,
-            TaID= null,
-            CourseDetails=null
+            CourseID: null,
+            TaID: null,
+            CourseDetails: null
             
                     
         } 
@@ -37,33 +34,27 @@ class Add extends Component {
     
         }
 
-        componentDidMount () {
+        saveToDb () {
 
-            const CourseName = this.state.CourseName //localStorage.getItem('AdminID')
-      //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
-    
-            fetch("http://localhost:5000/api/Add/" + CourseName)
+            fetch('http://localhost:5000/api/UpdateCourses/course', {
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(this.state) 
+            })
             .then(res => res.json())
-            .then(
-              (Semester) => {
+            .then(res => {
     
-                if (Semester.error) {
-                    alert('Error from database')
-                    console.log(Semester.error)
+                if (res.error)  {
+                    alert(res.error.message)
                     return 
                 }
     
-                this.setState({ Semester });
-    
-              },
-              (error) => {
+                return alert(res.success)
                 
-                alert('Error fetching data')
-                console.log(error)
-                
-              })
-    
+            }).catch(e => console.log(e))
+            
         }
+
  render () {
         return (
             <div>
@@ -87,11 +78,11 @@ class Add extends Component {
             <Input style={{marginLeft: '13em',  maxWidth: '30%' }}  value={this.state.CourseDetails} onChange={e => this.updateState('CourseDetails', e.target.value)} />
             </FormGroup>
         <br /> 
-            <Button style={{marginLeft: '13em' }} color="primary"  >Submit</Button>{' '}
+            <Button style={{marginLeft: '13em' }} color="primary" onClick={() => this.saveToDb()} > Add </Button>{' '}
         </div>
         )
     }
 
 } 
 
-export default Add;
+export default AddCourse;

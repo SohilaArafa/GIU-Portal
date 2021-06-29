@@ -17,7 +17,7 @@ class ViewSchedule extends Component {
     }
     async componentDidMount () {
         const { SID, SemesterNumber } = this.props.match.params
-        fetch(`http://localhost:5000/api/CreateSchedule/slot/location/${SemesterNumber}/${SID}`)
+        fetch(`http://localhost:5000/api/Schedule/view_schedule/${SemesterNumber}/${SID}`)
         .then(res => res.json())
         .then(
           (Schedules) => {
