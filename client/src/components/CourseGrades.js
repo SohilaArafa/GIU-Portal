@@ -66,7 +66,7 @@ class CourseGrades extends Component {
                             <thead>
                                 <tr>
                                 
-                                    <th>Name</th>
+                                    {/* <th>Name</th> */}
                                     <th>Course ID</th>
                                     <th>Grade</th>
                                 </tr>
@@ -76,7 +76,7 @@ class CourseGrades extends Component {
                                     this.state.course.map((course, i) => (
                                         <tr key={i}>
                                             
-                                            <td>{ course.Course && course.Course.Name }</td>
+                                            {/* <td>{ course.Course && course.Course.Name }</td> */}
                                             <td>{ course.CourseID }</td>
                                             <td>{ course.CourseGrade && course.CourseGrade.$numberDecimal }</td>
                                         </tr>
