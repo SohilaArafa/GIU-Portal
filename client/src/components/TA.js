@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import uploadGrades from '../../routes/api/uploadGrades';
+import uploadGrades from './uploadGrades';
 import {
     Card,
     CardBody,
@@ -91,6 +91,8 @@ class TA extends Component {
             </Container>
         )
     }
+
+    
 }
 
 
