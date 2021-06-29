@@ -17,7 +17,7 @@ const ScheduleSchema = new Schema({
     },
     SemseterNumber:{
         type: String,
-        required: false,
+        required: true,
     },
     Location:{
         type: String,

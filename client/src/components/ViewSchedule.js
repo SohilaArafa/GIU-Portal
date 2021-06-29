@@ -11,8 +11,8 @@ import { withRouter } from "react-router";
 
 class ViewSchedule extends Component {
     state = { 
-            SemseterNumber: "Winter19",
-            Schedules: [ {Day: "Sunday " ,Name: "Software Engineering ", CourseID: "SE101" , Slot:"First Period" , Location: "315" }]
+            SemseterNumber: "",
+            Schedules: []
         
     }
     async componentDidMount () {

@@ -34,12 +34,6 @@ class Student extends Component {
             ]
         } 
 
-      /*  state = { 
-            SID : '1002329' ,
-            SemesterNumber : []
-        
-        }*/
-
         componentDidMount () {
 
             const SID = this.state.SID //localStorage.getItem('SID')

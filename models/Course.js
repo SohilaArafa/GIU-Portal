@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const CoursesSchema = new Schema({
-    Name:{
+    CourseName:{
         type: String,
         required: true
     },
@@ -11,8 +11,16 @@ const CoursesSchema = new Schema({
         type: String,
         required: true
     },
-    TaID : {
+    TaID : { 
         type: String, 
+        required: true
+    },
+    CourseDetails : {
+        type : String ,
+        required: true
+    },
+    CourseMajor : {
+        type : Stirng ,
         required: true
     },
     studensEnrolled: {

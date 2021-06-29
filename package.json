@@ -21,11 +21,17 @@
   },
   "homepage": "https://github.com/dimashaheen/SEproject#readme",
   "dependencies": {
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "concurrently": "^6.2.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.12.14"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.14",
+    "react-google-login": "^5.2.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
