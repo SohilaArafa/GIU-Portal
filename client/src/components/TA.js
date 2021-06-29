@@ -18,16 +18,7 @@ class TA extends Component {
     state = {
         TaID: '100-1234', 
         courses: [
-            // {
-            //     Name: 'Programming 101',
-            //     CourseID: 'cs-12',
-            //     TaID: '123',
-            // },
-            // {
-            //     Name: 'Software Engineering 101',
-            //     CourseID: 'se-101',
-            //     TaID: '123',
-            // },
+           
         ]
     }
 
