@@ -24,6 +24,12 @@ class Admin extends Component {
                     
         } 
 
+      /*  state = { 
+            SID : '1002329' ,
+            SemesterNumber : []
+        
+        }*/
+
         componentDidMount () {
 
             const AdminID = this.state.AdminID //localStorage.getItem('AdminID')
@@ -51,7 +57,6 @@ class Admin extends Component {
               })
     
         }
-
  render () {
         return (
             <Container>
@@ -64,9 +69,9 @@ class Admin extends Component {
                                         <Link style={{ marginRight: '1em' }} to={"/CreateSchedule/"+Semester.SemesterNumber + '/' + Semester.AdminID} component={Button}>
                                             Create Schedule 
                                         </Link>
-                                        <br />
-                                        <br />
-                                        <Button color="info" >Update Course</Button>{' '}                                        
+                                        <Link style={{ marginRight: '1em' }} to={"/add-courses/"} component={Button}>
+                                            Update Course 
+                                        </Link>
                                     </CardBody>
                                 </Card>
                             </Col>

@@ -10,6 +10,10 @@ import ViewSchedule from './components/ViewSchedule';
 
 import Admin from './components/Admin';
 import AddCourses from './components/AddCourses';
+import ChangePassword from './components/ChangePassword';
+import Login from './components/Login';
+import Add from './components/Add';
+import Update from './components/Update';
 
 import {
   BrowserRouter as Router,
@@ -33,8 +37,10 @@ function App() {
         <Route path="/create-schedule/:SemesterNumber/:AdminID"><Admin /></Route>
         <Route path="/Admin"><Admin /></Route>
         <Route path="/add-Courses"><AddCourses /></Route>
-        {/* <Route path="/change-password"><ChangePassword /></Route>
-        <Route path="/login"><Login /></Route>   */}
+        <Route path="/change-password"><ChangePassword /></Route>
+        <Route path="/login"><Login /></Route>
+        <Route path="/add"><Add /></Route>
+        <Route path="/update"><Update /></Route>  
       </Switch>
     </Router>
 );
