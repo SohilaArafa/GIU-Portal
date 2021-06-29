@@ -21,16 +21,18 @@ class Update extends Component {
    
         state = {
 
-            CourseName: '100-1941',
-            Semester:[{CourseName: "" , CourseID: "" , TaID: "" , CourseDetails: "" , }]
-                    
+            CourseName: null,
+            CourseID= null,
+            CourseDetails=null
         } 
 
-      /*  state = { 
-            SID : '1002329' ,
-            SemesterNumber : []
-        
-        }*/
+      
+
+        updateState (key, value) {
+            const state = this.state
+            this.setState({ ...state, [key]: value })
+    
+        }
 
         componentDidMount () {
 
@@ -64,17 +66,17 @@ class Update extends Component {
         <div>
             <FormGroup>
             <Label style={{marginLeft: '13em' }} for="CourseID">Course ID</Label>
-            <Input style={{marginLeft: '13em',  maxWidth: '30%' }}   />
+            <Input style={{marginLeft: '13em',  maxWidth: '30%' }} value={this.state.CourseID} onChange={e => this.updateState('CourseID', e.target.value)}   />
             </FormGroup>
          <br />
             <FormGroup>
             <Label style={{marginLeft: '13em' }} for="CourseName">Course Name</Label>
-            <Input style={{marginLeft: '13em',  maxWidth: '30%' }}   />
+            <Input style={{marginLeft: '13em',  maxWidth: '30%' }} value={this.state.CourseName} onChange={e => this.updateState('CourseName', e.target.value)}   />
             </FormGroup>
         <br />
             <FormGroup>
             <Label style={{marginLeft: '13em' }} for="CourseDetails">Course Details</Label>
-            <Input style={{marginLeft: '13em',  maxWidth: '30%' }}   />
+            <Input style={{marginLeft: '13em',  maxWidth: '30%' }}  value={this.state.CourseDetails} onChange={e => this.updateState('CourseDetails', e.target.value)}  />
             </FormGroup>
         <br /> 
             <Button style={{marginLeft: '13em' }} color="primary" >Submit</Button>{' '}
