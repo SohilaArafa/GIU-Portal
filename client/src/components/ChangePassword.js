@@ -24,7 +24,6 @@ class ChangePassword extends Component {
        const { email } = user
 
        const { oldPassword, newPassword } = this.state
-        // const{email} = this.props.match.params //localStorage.getItem('CourseID')
         fetch(`http://localhost:5000/api/changepass/updatePassword`,{
           method: "PUT",
           headers: {

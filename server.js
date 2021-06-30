@@ -12,7 +12,6 @@ var passport = require('passport')
 
 
 // Add path to story using constant
-const items = require('./routes/api/items.js');
 const viewClassStudents = require('./routes/api/viewClassStudents.js');
 const Schedule = require('./routes/api/Schedule.js');
 const UpdateCourses = require('./routes/api/UpdateCourses.js');
@@ -86,7 +85,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // User Routes
 // Listen for your user story and link to constant created above
-app.use('/api/items', items)
 app.use('/api/viewClassStudents', viewClassStudents)
 app.use('/api/UpdateCourses', UpdateCourses)
 app.use('/api/Schedule', Schedule)

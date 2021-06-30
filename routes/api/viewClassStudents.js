@@ -108,14 +108,12 @@ router.get('/grades/:SemesterNumber/:SID', (req, res) => {
 });
 
 //getting course details using the courseid,semester,major,and student id
-router.get('/CourseDetails/:CourseID/:SemesterNumber:/CourseMajor:/SID', (req, res) => {
+router.get('/CourseDetails/:SemesterNumber/:SID', (req, res) => {
 
   const SID = req.params.SID
   const SemesterNumber = req.params.SemesterNumber
-  //const CourseID = req.params.CourseID
-  const CourseMajor = req.params.CourseMajor
 
-  StudentTakeCourses.find({ SID, SemesterNumber , CourseMajor  })
+  StudentTakeCourses.find({ SID, SemesterNumber  })
     .populate({ path: 'Course', select: 'Name' })
     .exec()
     .then(Enrollments => res.json(Enrollments))

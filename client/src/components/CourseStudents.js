@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 
 import { withRouter } from "react-router";
-//import uploadGrades from './uploadGrades';
+
 
 class CourseStudents extends Component {
     state = {
@@ -22,7 +22,6 @@ class CourseStudents extends Component {
         
         student.isEditMode = off ? false : true
         student.tempGrade = student.CourseGrade.$numberDecimal
-       // student.isEditMode = true ? this.setState({temp}) : 
         students.splice(index, 1, student)
 
         this.setState({ students })
@@ -59,7 +58,6 @@ class CourseStudents extends Component {
 
         const students = this.state.students
         
-        // student.CourseGrade.$numberDecimal = event.target.value
         student.tempGrade = event.target.value
         students.splice(index, 1, student)
 
@@ -70,7 +68,7 @@ class CourseStudents extends Component {
     componentDidMount () {
 
         
-        const { CourseID } = this.props.match.params //localStorage.getItem('CourseID')
+        const { CourseID } = this.props.match.params 
         fetch(`http://localhost:5000/api/viewClassStudents/students/${CourseID}`)
         .then(res => res.json())
         .then(
@@ -97,10 +95,6 @@ class CourseStudents extends Component {
      
 
     }
-
-    // async getStudentsFromDB (CourseID) {
-    //     console.log(CourseID)
-    // }
 
     
     render () {

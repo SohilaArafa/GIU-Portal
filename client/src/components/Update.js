@@ -26,8 +26,7 @@ class Update extends Component {
 
         componentDidMount () {
 
-            const CourseName = this.state.CourseName //localStorage.getItem('AdminID')
-      //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
+            const CourseName = this.state.CourseName 
     
             fetch("http://localhost:5000/api/Update/" + CourseName)
             .then(res => res.json())

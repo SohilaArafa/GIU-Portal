@@ -19,26 +19,13 @@ class Student extends Component {
 
             SID: null,
             semester: [
-                // {
-                //     SemesterNumber: 'Winter19' ,
-                //     SID: "100-1941"
-                // },
-                // {
-                //     SemesterNumber: 'Spring20',
-                //     SID: "100-1941"
-                // },
-                // {
-                //     SemesterNumber: 'Winter20',
-                //     SID: "100-1941"
-                // },
             ]
         } 
 
         componentDidMount () {
             
-            // const SID = this.state.SID //localStorage.getItem('SID')
              const user = JSON.parse(localStorage.getItem('user'))
-            //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
+            
     
             fetch("http://localhost:5000/api/viewClassStudents/student-courses/" + user.id)
             .then(res => res.json())
@@ -88,6 +75,8 @@ class Student extends Component {
                             </Col>
                         ))
                     }
+                    <p></p>
+                    <a href="/change-password"> <strong>Change Password</strong></a>
                 </Row>
             </Container>
         )

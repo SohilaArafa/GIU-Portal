@@ -10,27 +10,20 @@ import { withRouter } from "react-router";
 
 class CourseDetails extends Component {
     state = {
-        SemesterNumber : "", //"Winter19" ,
-     // course : [] , 
-    //  CourseGrade : []
-        course : [
-            // {
-            //     Name: "Sotware Engineering",
-            //     CID : "SE101",
-            //     CourseGrade: 78.0 ,
-            // }
-        ]
+        SemesterNumber : "", 
+        course : []
     }
 
     async componentDidMount () {
         
-        const { SID, SemesterNumber , CourseMajor } = this.props.match.params
+        const { SemesterNumber } = this.props.match.params
+        const { id } = JSON.parse(localStorage.getItem('user'))
 
-        fetch(`http://localhost:5000/api/viewClassStudents/CourseDetails/${SemesterNumber}/${CourseMajor}/${SID}`)
+        fetch(`http://localhost:5000/api/viewClassStudents/CourseDetails/${SemesterNumber}/${id}`)
         .then(res => res.json())
         .then(
           (course) => {
-
+              
             if (course.error) {
                 alert('Error from database')
                 console.log(course.error)
@@ -50,9 +43,7 @@ class CourseDetails extends Component {
           })
     }
 
-    // async getStudentsFromDB (CourseID) {
-    //     console.log(CourseID)
-    // }
+
     render () {
         return (
             <Container>
@@ -66,7 +57,7 @@ class CourseDetails extends Component {
                                     <th>Name</th>
                                     <th>Course ID</th>
                                     <th>CourseDetails</th>
-                                    <th>CourseMajor</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,7 +68,7 @@ class CourseDetails extends Component {
                                             <td>{ course.Course && course.Course.Name }</td>
                                             <td>{ course.CourseID }</td>
                                             <td>{ course.CourseDetails }</td>
-                                            <td>{ course.CourseMajor }</td>
+                                            
                                         </tr>
                                     ))
                                 }

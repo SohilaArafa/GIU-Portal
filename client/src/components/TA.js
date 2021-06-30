@@ -65,15 +65,15 @@ class TA extends Component {
                                         <Link color="info" to={"/course-students/"+course.CourseID} component={Button}>
                                             View Students
                                         </Link>
-                                        {/* <Link to={'/upload-grade/'+ course.CourseID} component={Button}>
-                                            Edit Grades
-                                        </Link> */}
                                     </CardBody>
                                 </Card>
                             </Col>
                         ))
                     }
+
+                            <a href="/change-password"> <strong>Change Password</strong></a>
                 </Row>
+
             </Container>
         )
     }

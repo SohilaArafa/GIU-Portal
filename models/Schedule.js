@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Create Schema
+// Schedule Schema
 const ScheduleSchema = new Schema({
     AdminID:{
         type: String,

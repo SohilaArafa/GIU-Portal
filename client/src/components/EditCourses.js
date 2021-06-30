@@ -24,9 +24,8 @@ class EditCourses extends Component {
 
         componentDidMount () {
 
-            const CourseName = this.state.CourseName //localStorage.getItem('AdminID')
-      //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
-    
+            const CourseName = this.state.CourseName 
+          
             fetch("http://localhost:5000/api/CreateSchedule/Semester/" + CourseName)
             .then(res => res.json())
             .then(
@@ -59,15 +58,15 @@ class EditCourses extends Component {
                    </FormGroup>
                    <p></p>
                    <ButtonGroup>
-                   <Link style={{ marginLeft: '13em' }} to={"/add-course"} component={Button}>
+                   <Link color="primary" style={{ marginLeft: '13em' }} to={"/add-course"} component={Button}>
                         Add Course
                     </Link>
                    <br />
-                   <Link style={{ marginLeft: '1em' }} to={"/update"} component={Button}>
+                   <Link color="primary" style={{ marginLeft: '1em' }} to={"/update"} component={Button}>
                         Update Course 
                     </Link>
                    <br />
-                   <Link style={{ marginLeft: '1em' }} to={"/delete"} component={Button}>
+                   <Link color="primary" style={{ marginLeft: '1em' }} to={"/delete"} component={Button}>
                         Delete Course 
                     </Link>
                    </ButtonGroup>               

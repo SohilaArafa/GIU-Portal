@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Create Schema
+// Courses Schema
 const CoursesSchema = new Schema({
     CourseName:{
         type: String,
@@ -17,10 +17,7 @@ const CoursesSchema = new Schema({
     },
     CourseDetails : {
         type : String ,
-        required: true
-    },
-    CourseMajor : {
-        type : String ,
+        required: false
     },
     studensEnrolled: {
         type: { type: mongoose.Types.ObjectId, ref: 'StudentTakeCourses' }, 

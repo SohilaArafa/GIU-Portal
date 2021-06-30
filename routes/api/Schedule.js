@@ -5,6 +5,17 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Schedule = require('../../models/Schedule');
 
+//getting semester by adminID
+router.get('/semester/:AdminID', (req, res) => {
+
+  const AdminID = req.params.AdminID
+
+  Schedule.find({ AdminID})
+    .then(Enrollments => res.json(Enrollments))
+    .catch(err => res.status(400).json({ success: false, error: err }))
+ 
+});
+
 //view Schedule
 router.get('/view_schedule/:SemesterNumber/:SID', (req, res) => {
     const SID = req.params.SID

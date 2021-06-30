@@ -73,27 +73,27 @@ class CreateSchedule extends Component {
                 <Row form>
                     <Col md={6}>
                     <FormGroup>
-                        <Label style={{ marginLeft: '13em' }} for="location">location</Label>
+                        <Label style={{ marginLeft: '13em' }} for="location">Location</Label>
                         <Input style={{ marginLeft: '13em' }} value={this.state.Location} onChange={e => this.updateState('Location', e.target.value)} maxLength="30%" type="text" name="location" id="Location"/>
                     </FormGroup>
                     </Col>
                     <Col md={6}>
                     <FormGroup>
-                        <Label style={{ marginLeft: '13em' }} for="slot">slot</Label>
+                        <Label style={{ marginLeft: '13em' }} for="slot">Slot</Label>
                         <Input style={{ marginLeft: '13em' }} value={this.state.Slot} onChange={e => this.updateState('Slot', e.target.value)} type="text" name="slot" id="Slot">
                         </Input>
                     </FormGroup>
                     </Col>
                     <Col md={4}>
                     <FormGroup>
-                        <Label style={{ marginLeft: '13em' }} for="day">day</Label>
+                        <Label style={{ marginLeft: '13em' }} for="day">Day</Label>
                         <Input style={{ marginLeft: '13em' }} value={this.state.Day} onChange={e => this.updateState('Day', e.target.value)} type="text" name="day" id="Day"/>
                     </FormGroup>
                     </Col>
                     
                 </Row>
                     <p></p>
-                    <Button style={{ marginLeft: '13em' }} onClick={() => this.saveToDb()} >  Create </Button>
+                    <Button color="primary" style={{ marginLeft: '13em' }} onClick={() => this.saveToDb()} >  Create </Button>
                 </Form>
                 );
     }

@@ -17,21 +17,23 @@ class Admin extends Component {
    
         state = {
 
-            Semester:[{SemesterNumber: '' ,
-            AdminID: ""}]
+            AdminID: '100-2345',
+            Semester:[{SemesterNumber: 'Winter19' ,
+            AdminID: "100-2345"}]
                     
         } 
 
 
         componentDidMount () {
 
-            const AdminID = this.state.AdminID //localStorage.getItem('AdminID')
-      //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
+            const AdminID = this.state.AdminID 
     
-            fetch("http://localhost:5000/api/Schedule/Semester/" + AdminID)
+            fetch("http://localhost:5000/api/Schedule/semester/" + AdminID)
             .then(res => res.json())
             .then(
               (Semester) => {
+
+                console.log(Semester)
     
                 if (Semester.error) {
                     alert('Error from database')
@@ -58,11 +60,11 @@ class Admin extends Component {
                             <Col xs="12" md="6" lg="4" key={i}>
                                 <Card>
                                     <CardBody>
-                                        <CardTitle tag="h5">{ this.state.SemesterNumber }</CardTitle>
-                                        <Link style={{ marginRight: '1em' }} to={"/create-schedule/"+Semester.SemesterNumber + '/' + Semester.AdminID} component={Button}>
+                                        <CardTitle tag="h5">{ Semester.SemseterNumber }</CardTitle>
+                                        <Link color="info" style={{ marginRight: '1em' }} to={"/create-schedule/"+Semester.SemesterNumber + '/' + Semester.AdminID} component={Button}>
                                             Create Schedule 
                                         </Link>
-                                        <Link style={{ marginRight: '1em' }} to={"/edit-courses"} component={Button}>
+                                        <Link color="info" style={{ marginRight: '1em' }} to={"/edit-courses"} component={Button}>
                                             Update Course 
                                         </Link>
                                     </CardBody>
@@ -70,7 +72,10 @@ class Admin extends Component {
                             </Col>
                         ))
                     }
+                        <p></p>
+                        <a href="/change-password"> <strong>Change Password</strong></a>
                 </Row>
+
             </Container>
         )
     }

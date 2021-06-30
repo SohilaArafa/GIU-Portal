@@ -1,7 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppNavbar from './components/AppNavbar';
-//import React, { Component } from 'react';
 import Login from './components/Login';
 import TA from './components/TA';
 import './App.css';
@@ -36,7 +35,7 @@ function App() {
         <Route path="/course-students/:CourseID"><CourseStudents /></Route>
         <Route path="/students"><Student /></Route>
         <Route path="/course-grade/:SemesterNumber"><CourseGrades /></Route>
-        <Route path="/course-details/:SemesterNumber/:CourseMajor/:SID"><CourseDetails /></Route>
+        <Route path="/course-details/:SemesterNumber"><CourseDetails /></Route>
         <Route path="/apply"><Apply /></Route>
         <Route path="/create-schedule"><CreateSchedule /></Route>
         <Route path="/view-schedule/:SemesterNumber/:SID"><ViewSchedule /></Route>

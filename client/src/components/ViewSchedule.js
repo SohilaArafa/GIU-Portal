@@ -54,7 +54,7 @@ class ViewSchedule extends Component {
                         <Table>
                             <thead>
                                 <tr>
-                                    {/* <th>Name</th> */}
+                                  
                                     <th>Day</th>
                                     <th>Course ID</th>
                                     <th>Slot</th>
@@ -66,7 +66,7 @@ class ViewSchedule extends Component {
                                     this.state.Schedules.map((Schedules, i) => (
                                         <tr key={i}>
                                             
-                                            {/* <td>{ Schedules.Course && Schedules.Course.Name }</td> */}
+                                            
                                             <th>{ Schedules.Day }</th>
                                             <td>{ Schedules.CourseID }</td>
                                             <td>{ Schedules.Slot }</td>

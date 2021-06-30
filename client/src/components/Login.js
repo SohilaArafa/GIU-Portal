@@ -55,7 +55,6 @@ class Login extends Component {
 
 
         console.log(user)
-        // this.setState({ users });
 
       },
       (error) => {
@@ -85,6 +84,8 @@ class Login extends Component {
                {<Button color="primary" style={{ marginLeft: '13em' }} onClick={() => this.login()} >
                     Submit
                 </Button>}
+                <p></p>
+                <a style={{marginLeft: '13em' }} href="/apply"> <strong>Not Registered Yet?</strong></a>
             </div>
   )
 }
