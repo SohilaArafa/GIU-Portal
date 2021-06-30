@@ -1,7 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors')
+const User = require('./models/User');
+
+
+const cookieParser = require('cookie-parser')
+const session = require("express-session")
+
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
 
 
 // Add path to story using constant
@@ -9,13 +16,42 @@ const items = require('./routes/api/items.js');
 const viewClassStudents = require('./routes/api/viewClassStudents.js');
 const Schedule = require('./routes/api/Schedule.js');
 const UpdateCourses = require('./routes/api/UpdateCourses.js');
-
+const ChangePassword = require('./routes/api/ChangePassword.js');
+const cors = require('cors')
 
 const app = express();
 
-// Bodyparser Middleware
-app.use(bodyParser.json());
-app.use(cors());
+
+
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+  },
+  function(email, password, done) {
+    User.findOne({ email: email }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect email.' });
+      }
+      if (user.password !== password) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  User.findById(user, function(err, user) {
+    console.log('deserialize user', err, user)
+    done(err, user);
+  });
+});
+
 
 // db config
 const db = require('./config/keys').mongoURI;
@@ -26,13 +62,35 @@ mongoose
   .then(() => console.log('MongoDB Connected..'))
   .catch(err => console.log(err));
 
+
+app.use(cors({ credentials: true }));
+app.use(cookieParser());
+
+
+app.use(session({ 
+  cookie: { maxAge: 31536600 },
+  secret: "cats", 
+  resave: true, 
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.static("public"));
+
+// Bodyparser Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
 // User Routes
 // Listen for your user story and link to constant created above
 app.use('/api/items', items)
 app.use('/api/viewClassStudents', viewClassStudents)
 app.use('/api/UpdateCourses', UpdateCourses)
 app.use('/api/Schedule', Schedule)
-
+app.use('/api/changepass', ChangePassword);
 
 
 

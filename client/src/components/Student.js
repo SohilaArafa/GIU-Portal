@@ -17,40 +17,43 @@ class Student extends Component {
    
         state = {
 
-            SID: '100-1941',
+            SID: null,
             semester: [
-                {
-                    SemesterNumber: 'Winter19' ,
-                    SID: "100-1941"
-                },
-                {
-                    SemesterNumber: 'Spring20',
-                    SID: "100-1941"
-                },
-                {
-                    SemesterNumber: 'Winter20',
-                    SID: "100-1941"
-                },
+                // {
+                //     SemesterNumber: 'Winter19' ,
+                //     SID: "100-1941"
+                // },
+                // {
+                //     SemesterNumber: 'Spring20',
+                //     SID: "100-1941"
+                // },
+                // {
+                //     SemesterNumber: 'Winter20',
+                //     SID: "100-1941"
+                // },
             ]
         } 
 
         componentDidMount () {
-
-            const SID = this.state.SID //localStorage.getItem('SID')
-      //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
+            
+            // const SID = this.state.SID //localStorage.getItem('SID')
+             const user = JSON.parse(localStorage.getItem('user'))
+            //      const SemesterNumber = this.state.SemesterNumber //localStorage.getItem('SemesterNumber')
     
-            fetch("http://localhost:5000/api/viewClassStudents/courses/" + SID)
+            fetch("http://localhost:5000/api/viewClassStudents/student-courses/" + user.id)
             .then(res => res.json())
             .then(
-              (courses) => {
+              (semester) => {
+
+                console.log(semester)
     
-                if (courses.error) {
+                if (semester.error) {
                     alert('Error from database')
-                    console.log(courses.error)
+                    console.log(semester.error)
                     return 
                 }
     
-                this.setState({ courses });
+                this.setState({ semester });
     
               },
               (error) => {
@@ -69,15 +72,19 @@ class Student extends Component {
                             <Col xs="12" md="6" lg="4" key={i}>
                                 <Card>
                                     <CardBody>
-                                        <CardTitle tag="h5">{ semester.SemesterNumber }</CardTitle>
-                                        <Link style={{ marginRight: '1em' }} to={"/course-grade/"+semester.SemesterNumber + '/' + semester.SID} component={Button}>
+
+                                        <CardTitle tag="h5">{ semester._id }</CardTitle>
+                                        <Link color="info" style={{ marginRight: '1em' }} to={"/course-grade/"+semester._id} component={Button}>
                                             View Grade 
                                         </Link>
-                                        <Link style={{ marginRight: '1em' }} to={"/course-details/"+semester.SemesterNumber + '/' + semester.SID + '/' + semester.CourseMajor + '/' + semester.CourseID } component={Button}>
-                                          View Major Courses 
+                                        <Link color="info"  style={{ marginRight: '1em' }} to={"/course-details/"+semester._id} component={Button}>
+                                          View Info
                                         </Link>
+                                    
                                     </CardBody>
+                                    
                                 </Card>
+                                <tb />
                             </Col>
                         ))
                     }

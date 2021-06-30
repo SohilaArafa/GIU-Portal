@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UsersSchema = new Schema({
-    id:{
+    id: {
         type: String,
-        required: true
+        required: true,
     },
     fname:{
         type: String,
@@ -36,8 +36,11 @@ const UsersSchema = new Schema({
     },
     faculty:{
         type: String,
-        required: true
+    },
+    token : {
+        type : String
     }
+
 });
 
 module.exports = User = mongoose.model('user', UsersSchema);

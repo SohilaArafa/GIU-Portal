@@ -1,6 +1,8 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppNavbar from './components/AppNavbar';
+//import React, { Component } from 'react';
+import Login from './components/Login';
 import TA from './components/TA';
 import './App.css';
 import Student from './components/Student';
@@ -12,7 +14,6 @@ import CreateSchedule from './components/CreateSchedule';
 import Admin from './components/Admin';
 import EditCourses from './components/EditCourses';
 import ChangePassword from './components/ChangePassword';
-import Login from './components/Login';
 import AddCourse from './components/AddCourse';
 import Update from './components/Update';
 import CourseStudents from './components/CourseStudents';
@@ -34,7 +35,7 @@ function App() {
         <Route path="/ta"><TA /></Route>
         <Route path="/course-students/:CourseID"><CourseStudents /></Route>
         <Route path="/students"><Student /></Route>
-        <Route path="/course-grade/:SemesterNumber/:SID"><CourseGrades /></Route>
+        <Route path="/course-grade/:SemesterNumber"><CourseGrades /></Route>
         <Route path="/course-details/:SemesterNumber/:CourseMajor/:SID"><CourseDetails /></Route>
         <Route path="/apply"><Apply /></Route>
         <Route path="/create-schedule"><CreateSchedule /></Route>
@@ -49,7 +50,7 @@ function App() {
     </Router>
 );
 
-
 }
+
 
 export default App;

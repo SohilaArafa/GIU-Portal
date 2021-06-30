@@ -26,10 +26,10 @@ class CourseGrades extends Component {
     async componentDidMount () {
         
 
-        const { SID, SemesterNumber } = this.props.match.params
+        const { SemesterNumber } = this.props.match.params
+        const { id } = JSON.parse(localStorage.getItem('user'))
 
-
-        fetch(`http://localhost:5000/api/viewClassStudents/grades/${SemesterNumber}/${SID}`)
+        fetch(`http://localhost:5000/api/viewClassStudents/grades/${SemesterNumber}/${id}`)
         .then(res => res.json())
         .then(
           (course) => {

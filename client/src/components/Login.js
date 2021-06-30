@@ -25,7 +25,7 @@ class Login extends Component {
     const { email, password } = this.state
 
 
-    fetch(`http://localhost:5000/api/changepass/login/`, {
+    fetch(`http://localhost:5000/api/changepass/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -39,11 +39,13 @@ class Login extends Component {
         console.log(user)
         localStorage.setItem('user', JSON.stringify(user))
 
-        if(user.profile == 'student') {
+        if(user.profile === 'student') {
           this.props.history.push('/students')
-        } else if (user.profile == 'ta'){
+        } else if (user.profile === 'ta'){
           this.props.history.push('/ta')
-        } 
+        }  else if (user.profile === 'Admin'){
+          this.props.history.push('/Admin')
+        }
 
         if (user.error) {
             alert('Error from database')

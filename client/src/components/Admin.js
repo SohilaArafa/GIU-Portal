@@ -17,9 +17,8 @@ class Admin extends Component {
    
         state = {
 
-            AdminID: '100-1941',
-            Semester:[{SemesterNumber: 'Winter19' ,
-            AdminID: "100-1941"}]
+            Semester:[{SemesterNumber: '' ,
+            AdminID: ""}]
                     
         } 
 
@@ -59,7 +58,7 @@ class Admin extends Component {
                             <Col xs="12" md="6" lg="4" key={i}>
                                 <Card>
                                     <CardBody>
-                                        <CardTitle tag="h5">{ Semester.SemesterNumber }</CardTitle>
+                                        <CardTitle tag="h5">{ this.state.SemesterNumber }</CardTitle>
                                         <Link style={{ marginRight: '1em' }} to={"/create-schedule/"+Semester.SemesterNumber + '/' + Semester.AdminID} component={Button}>
                                             Create Schedule 
                                         </Link>

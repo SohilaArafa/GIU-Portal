@@ -16,26 +16,16 @@ import {
 
 class TA extends Component {
     state = {
-        TaID: '100-1234', 
-        courses: [
-            // {
-            //     Name: 'Programming 101',
-            //     CourseID: 'cs-12',
-            //     TaID: '123',
-            // },
-            // {
-            //     Name: 'Software Engineering 101',
-            //     CourseID: 'se-101',
-            //     TaID: '123',
-            // },
-        ]
+        TaID: null, 
+        courses: [ ]
     }
 
     componentDidMount () {
 
-        const TaID = this.state.TaID //localStorage.getItem('TaID')
+        const user = JSON.parse(localStorage.getItem('user'))
+        console.log(user)
 
-        fetch("http://localhost:5000/api/viewClassStudents/courses/" + TaID)
+        fetch("http://localhost:5000/api/viewClassStudents/courses/" + user.id)
         .then(res => res.json())
         .then(
           (courses) => {
@@ -63,6 +53,8 @@ class TA extends Component {
         return (
             <Container>
                 <Row>
+                    <h1>Your Courses</h1>
+                    { !this.state.courses.length && (<p>No courses assigned</p>) }
                     { this.state.courses.map((course, i) => (
                             <Col xs="12" md="6" lg="4" key={i}>
                                 <Card>
@@ -70,7 +62,7 @@ class TA extends Component {
                                         <CardTitle tag="h5">{ course.Name }</CardTitle>
                                         <CardSubtitle tag="h6" className="mb-2 text-muted">
                                             { course.CourseID }</CardSubtitle>
-                                        <Link to={'/course-students/'+ course.CourseID} component={Button}>
+                                        <Link color="info" to={"/course-students/"+course.CourseID} component={Button}>
                                             View Students
                                         </Link>
                                         {/* <Link to={'/upload-grade/'+ course.CourseID} component={Button}>

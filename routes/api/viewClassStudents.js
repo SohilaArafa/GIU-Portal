@@ -28,6 +28,26 @@ router.get('/courses/:TaID', (req, res) => {
 
 });
 
+//Getting courses by the student id
+router.get('/student-courses/:SID', (req, res) => {
+
+  const SID = req.params.SID
+  StudentTakeCourses
+    .aggregate()
+    .match({ SID })
+    .group({ _id: '$SemesterNumber' })
+    .exec()
+    .then(courses => {
+      res.json(courses)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(400).json({ success: false, error: err });
+    })
+
+});
+
+
 // ta uploading/updating a grade
 router.put('/updateGrade', (req,res) => {
   
